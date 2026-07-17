@@ -35,6 +35,24 @@ npm run reset-project
 
 This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
+### Icons
+
+Icons are installed per family from [`@react-native-vector-icons`](https://github.com/oblador/react-native-vector-icons) (the recommended replacement for the deprecated `@expo/vector-icons`), not as a single all-in-one package.
+
+To add a family (e.g. Ionicons):
+
+```bash
+bun add @react-native-vector-icons/ionicons
+```
+
+To remove one:
+
+```bash
+bun remove @react-native-vector-icons/ionicons
+```
+
+Other available families: `material-icons`, `fontawesome6`, `feather`, `font-awesome`, etc. See the full list on [npm](https://www.npmjs.com/search?q=%40react-native-vector-icons).
+
 ### Other setup steps
 
 - To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
