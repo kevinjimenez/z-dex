@@ -5,6 +5,7 @@ import Ionicons from '@react-native-vector-icons/ionicons';
 import { Image } from 'expo-image';
 import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
+import * as Haptics from 'expo-haptics';
 
 interface Props {
   item: CharacterResponse;
@@ -34,8 +35,14 @@ const CharacterCard = ({ item }: Props) => {
       </View>
       <Pressable
         className=""
-        onPress={() => setIsFavorite(() => true)}
-        onLongPress={() => setIsFavorite(() => false)}
+        onPress={() => {
+          Haptics.selectionAsync();
+          setIsFavorite(() => true);
+        }}
+        onLongPress={() => {
+          Haptics.selectionAsync();
+          setIsFavorite(() => false);
+        }}
       >
         <Ionicons
           name="heart-outline"
