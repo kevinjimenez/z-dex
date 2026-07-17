@@ -24,12 +24,17 @@ const BaseBadge = ({
   return (
     <View
       className={twMerge(
-        'bg-gray-400 px-1.5 py-0.5 rounded-lg flex-row gap-x-1',
+        'bg-gray-300 px-1.5 py-0.5 rounded-lg flex-row gap-x-1',
         customClassBadge,
       )}
     >
       {prefixIcon && <Ionicons name={prefixIcon} size={iconSize} />}
-      <Text className={twMerge('text-xs font-medium', customClassText)}>
+      <Text
+        className={twMerge(
+          'text-xs font-medium text-gray-600',
+          customClassText,
+        )}
+      >
         {text}
       </Text>
       {suffixIcon && <Ionicons name={suffixIcon} size={iconSize} />}
