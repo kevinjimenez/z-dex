@@ -1,11 +1,11 @@
 import { CharacterResponse } from '@/core/interfaces/responses/character-response.interface';
 import LabelIcon from '@/shared/components/LabelIcon';
 import BaseBadge from '@/shared/ui/BaseBadge';
-import Ionicons from '@react-native-vector-icons/ionicons';
+import BaseButtonIcon from '@/shared/ui/BaseButtonIcon';
+import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 import { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
-import * as Haptics from 'expo-haptics';
+import { Text, View } from 'react-native';
 
 interface Props {
   item: CharacterResponse;
@@ -13,6 +13,16 @@ interface Props {
 
 const CharacterCard = ({ item }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleFavoriteCharacter = () => {
+    Haptics.selectionAsync();
+    setIsFavorite(() => true);
+  };
+
+  const handleNotFavoriteCharacter = () => {
+    Haptics.selectionAsync();
+    setIsFavorite(() => false);
+  };
 
   return (
     <View className="rounded-xl border border-slate-200 flex-row gap-x-5 p-3 justify-center items-center bg-white elevation-xl">
@@ -33,23 +43,12 @@ const CharacterCard = ({ item }: Props) => {
           <LabelIcon text={item.ki} prefixIcon="leaf-outline" />
         </View>
       </View>
-      <Pressable
-        className=""
-        onPress={() => {
-          Haptics.selectionAsync();
-          setIsFavorite(() => true);
-        }}
-        onLongPress={() => {
-          Haptics.selectionAsync();
-          setIsFavorite(() => false);
-        }}
-      >
-        <Ionicons
-          name="heart-outline"
-          size={25}
-          color={isFavorite ? 'red' : 'black'}
-        />
-      </Pressable>
+      <BaseButtonIcon
+        onPress={handleFavoriteCharacter}
+        onLongPress={handleNotFavoriteCharacter}
+        icon="heart-outline"
+        color={isFavorite ? 'red' : 'gray'}
+      />
     </View>
   );
 };
