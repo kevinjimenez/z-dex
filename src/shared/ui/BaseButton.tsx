@@ -19,12 +19,14 @@ const BaseButton = ({
   size = 23,
   color = 'black',
   onPress,
+  ...rest
 }: Props) => {
   return (
     <Pressable
       className="w-full bg-white p-4 rounded-xl border border-slate-200 my-4"
       disabled={disabled}
       onPress={onPress}
+      {...rest}
     >
       {prefixIcon && <Ionicons name={prefixIcon} size={size} color={color} />}
       <Text className="text-center font-bold text-orange-500">{text}</Text>
