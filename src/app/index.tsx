@@ -1,31 +1,31 @@
 import { useCharacters } from '@/hooks/useCharacters';
-import LabelIcon from '@/shared/components/LabelIcon';
-import BaseBadge from '@/shared/ui/BaseBadge';
-import Ionicons from '@react-native-vector-icons/ionicons';
-import { Image } from 'expo-image';
-import { useState } from 'react';
 import { FlatList, Pressable, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import CharacterCard from './CharacterCard';
+import CharacterCard from '../features/characters/components/CharacterCard';
+import BaseButton from '@/shared/ui/BaseButton';
 
 const AppScreen = () => {
   const { top } = useSafeAreaInsets();
-  const { dragonBallCharacters } = useCharacters();
-
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { dragonBallCharacters, fetchNextPage, hasNextPage } = useCharacters();
 
   return (
     <View className="bg-yellow-100 flex-1" style={{ paddingTop: top }}>
       <Text className="font-bold">Universo Z</Text>
-      <View className="p-5">
+      <View className="px-5 pt-5 pb-10">
         <FlatList
-          data={dragonBallCharacters.data}
+          data={dragonBallCharacters}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => String(item.id)}
           ItemSeparatorComponent={() => <View className="h-4" />}
           renderItem={({ item }) => (
             <CharacterCard key={String(item.id)} item={item} />
           )}
+          ListFooterComponent={() => {
+            if (!hasNextPage) return null;
+            return (
+              <BaseButton text="Cargar más" onPress={() => fetchNextPage()} />
+            );
+          }}
         />
       </View>
     </View>
