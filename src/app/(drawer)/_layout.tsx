@@ -2,29 +2,27 @@ import { Drawer } from 'expo-router/drawer';
 
 const DrawerLayout = () => {
   return (
-    <Drawer
-      screenOptions={{
-        drawerActiveTintColor: 'indigo',
-        // headerShadowVisible: false,
-        // sceneContainerStyle: {
-        //   backgroundColor: 'white',
-        // },
-      }}
-    >
+    <Drawer>
       <Drawer.Screen
-        name="home" // This is the name of the page and must match the url from root
+        name="(tabs)"
         options={{
-          drawerLabel: 'Home',
-          title: 'overview',
+          drawerLabel: 'tab',
+          title: 'tab',
+          // headerStyle: { backgroundColor: 'indigo' },
+          // headerTintColor: 'white',
+          // headerShown: false,
         }}
       />
-      {/*<Drawer.Screen
-        name="user/[id]" // This is the name of the page and must match the url from root
+      <Drawer.Screen
+        name="profile/index"
         options={{
-          drawerLabel: 'User',
-          title: 'overview',
+          drawerLabel: 'Perfil',
+          title: 'Usuario',
+          // headerStyle: { backgroundColor: 'indigo' },
+          // headerTintColor: 'white',
+          // headerShown: false,
         }}
-      />*/}
+      />
     </Drawer>
   );
 };
