@@ -36,7 +36,8 @@
         }
       ],
       "expo-image",
-      "@react-native-vector-icons/ionicons"
+      "@react-native-vector-icons/ionicons",
+      "@react-native-vector-icons/lucide"
     ],
     "experiments": {
       "typedRoutes": true,
