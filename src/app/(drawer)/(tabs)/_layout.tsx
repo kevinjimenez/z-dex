@@ -1,5 +1,6 @@
 import Lucide from '@react-native-vector-icons/lucide';
 import { Tabs } from 'expo-router';
+import { getFocusedRouteNameFromRoute } from 'expo-router/build/react-navigation';
 
 const TabsLayout = () => {
   return (
@@ -20,7 +21,7 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="characters"
+        name="(stack)"
         options={{
           title: 'Personajes',
           tabBarIcon: ({ color }) => (

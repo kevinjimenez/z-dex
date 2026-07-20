@@ -1,13 +1,10 @@
 import BaseButtonIcon from '@/shared/ui/BaseButtonIcon';
-import { useLocalSearchParams } from 'expo-router';
-import {
-  StackActions,
-  useNavigation,
-} from 'expo-router/build/react-navigation';
+import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { StackActions } from 'expo-router/build/react-navigation';
 import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const CharacterDetailScreen = () => {
+const ComponentName = () => {
   const { top } = useSafeAreaInsets();
   const navigation = useNavigation();
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -15,7 +12,6 @@ const CharacterDetailScreen = () => {
   const goto = () => {
     navigation.dispatch(StackActions.pop());
   };
-
   return (
     <View style={{ paddingTop: top }} className="bg-surface-page1 flex-1 ">
       <View className="flex-row justify-between">
@@ -36,4 +32,4 @@ const CharacterDetailScreen = () => {
   );
 };
 
-export default CharacterDetailScreen;
+export default ComponentName;

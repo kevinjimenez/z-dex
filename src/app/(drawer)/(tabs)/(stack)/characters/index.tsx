@@ -10,7 +10,7 @@ const CharactersScreen = () => {
   const { top } = useSafeAreaInsets();
   const { dragonBallCharacters, fetchNextPage, hasNextPage } = useCharacters();
   const goToCharacterDetail = (id: number) => {
-    router.push(`/characters/${id}`);
+    router.push(`/detail/${id}`);
   };
 
   return (
