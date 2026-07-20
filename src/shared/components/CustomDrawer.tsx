@@ -1,16 +1,13 @@
+import BaseButton from '@/shared/ui/BaseButton';
+import BaseButtonIcon from '@/shared/ui/BaseButtonIcon';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
+  DrawerItemList,
 } from 'expo-router/drawer';
 import { Text, View } from 'react-native';
-import BaseButton from '../ui/BaseButton';
-import BaseButtonIcon from '../ui/BaseButtonIcon';
-import CustomDrawerItem from './CustomDrawerItem';
-import { useDrawerNavItems } from './useDrawerNavItems';
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
-  const items = useDrawerNavItems(props);
-
   return (
     <DrawerContentScrollView
       {...props}
@@ -22,29 +19,26 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
           <Text className="text-center text-white text-3xl font-bold">G</Text>
         </View>
         <View className="flex-col flex-1">
-          <Text>Guerrero Z</Text>
-          <Text>Guerrero@gmail.com</Text>
+          <Text className="font-bold text-xl">Guerrero Z</Text>
+          <Text className="text-xs">Guerrero@gmail.com</Text>
         </View>
         <BaseButtonIcon
           icon="close"
           className="bg-[#EEE0CC] rounded-full size-10 items-center justify-center"
-          color="#9D6638"
+          color="brown"
         />
       </View>
 
-      <View className="flex-1 my-4">
-        <View className="pb-2">
-          <Text className="uppercase" style={{ letterSpacing: 0.8 }}>
-            Navegación
-          </Text>
-        </View>
-        {items.map(({ key, ...item }) => (
-          <CustomDrawerItem key={key} {...item} />
-        ))}
+      <View className="flex-1 mt-6 mb-4">
+        <Text className="uppercase text-sm pb-2" style={{ letterSpacing: 0.5 }}>
+          Navegación
+        </Text>
+        {/* Draweritems */}
+        <DrawerItemList {...props} />
       </View>
+
       <BaseButton text="Cerrar sesión" prefixIcon="log-out-outline" />
     </DrawerContentScrollView>
   );
 };
-
 export default CustomDrawer;
