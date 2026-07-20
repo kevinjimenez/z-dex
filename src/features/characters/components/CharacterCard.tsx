@@ -26,7 +26,7 @@ const CharacterCard = ({ item, onPress, ...rest }: Props) => {
 
   return (
     <Pressable
-      className="rounded-xl border border-slate-200 flex-row gap-x-5 p-3 justify-center items-center bg-white elevation-xl"
+      className="rounded-xl border border-slate-200 flex-row gap-x-5 p-3 justify-center items-center bg-white elevation-sm"
       {...rest}
       onPress={onPress}
     >
