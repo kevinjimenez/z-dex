@@ -27,7 +27,11 @@ const CharactersScreen = () => {
         ListFooterComponent={() => {
           if (!hasNextPage) return null;
           return (
-            <BaseButton text="Cargar más" onPress={() => fetchNextPage()} />
+            <BaseButton
+              text="Cargar más"
+              onPress={() => fetchNextPage()}
+              className="my-4"
+            />
           );
         }}
       />
