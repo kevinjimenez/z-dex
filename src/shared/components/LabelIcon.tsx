@@ -1,23 +1,23 @@
-import Ionicons, {
-  IoniconsIconName,
-} from '@react-native-vector-icons/ionicons';
+import Lucide, { LucideIconName } from '@react-native-vector-icons/lucide';
 import { Text, View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
 interface Props {
   text: string;
-  prefixIcon?: IoniconsIconName;
-  suffixIcon?: IoniconsIconName;
+  prefixIcon?: LucideIconName;
+  suffixIcon?: LucideIconName;
   customClassContainer?: string;
   customClassText?: string;
-  iconSize?: number;
+  size?: number;
+  color?: string;
 }
 
 const LabelIcon = ({
   text,
   prefixIcon,
   suffixIcon,
-  iconSize = 12,
+  size = 12,
+  color,
   customClassContainer,
   customClassText,
 }: Props) => {
@@ -28,11 +28,11 @@ const LabelIcon = ({
         customClassContainer,
       )}
     >
-      {prefixIcon && <Ionicons name={prefixIcon} size={iconSize} />}
+      {prefixIcon && <Lucide name={prefixIcon} size={size} className={color} />}
       <Text className={twMerge('text-sm font-normal', customClassText)}>
         {text}
       </Text>
-      {suffixIcon && <Ionicons name={suffixIcon} size={iconSize} />}
+      {suffixIcon && <Lucide name={suffixIcon} size={size} className={color} />}
     </View>
   );
 };
