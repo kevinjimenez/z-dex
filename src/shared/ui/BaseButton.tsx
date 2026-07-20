@@ -1,41 +1,88 @@
-import Ionicons, {
-  IoniconsIconName,
-} from '@react-native-vector-icons/ionicons';
+import Lucide, { LucideIconName } from '@react-native-vector-icons/lucide';
 import { Pressable, PressableProps, Text } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
 interface Props extends PressableProps {
   text: string;
-  prefixIcon?: IoniconsIconName;
-  suffixIcon?: IoniconsIconName;
+  prefixIcon?: LucideIconName;
+  suffixIcon?: LucideIconName;
   size?: number;
-  color?: string;
+  color?: 'primary' | 'secondary';
+  variant?: 'contained' | 'soft' | 'outline';
 }
 
 const BaseButton = ({
   text,
   prefixIcon,
+  variant,
   suffixIcon,
   disabled = false,
   size = 23,
-  color = 'black',
+  color = 'primary',
   onPress,
   className,
   ...rest
 }: Props) => {
+  const VARIANT_STYLES: Record<
+    NonNullable<Props['variant']>,
+    Record<
+      NonNullable<Props['color']>,
+      { button: string; text: string; icon: string }
+    >
+  > = {
+    contained: {
+      primary: { button: 'bg-primary', text: 'text-white', icon: 'text-white' },
+      secondary: {
+        button: 'bg-white border border-slate-200',
+        text: 'text-primary',
+        icon: 'text-primary',
+      },
+    },
+    soft: {
+      primary: {
+        button: 'bg-primary-50 border-primary border border-primary',
+        text: 'text-primary',
+        icon: 'text-primary',
+      },
+      secondary: {
+        button: 'bg-white',
+        text: 'text-primary',
+        icon: 'text-primary',
+      },
+    },
+    outline: {
+      primary: {
+        button: 'bg-transparent border border-primary',
+        text: 'text-primary',
+        icon: 'text-primary',
+      },
+      secondary: {
+        button: 'bg-transparent border border-slate-200',
+        text: 'text-primary',
+        icon: 'text-primary',
+      },
+    },
+  };
+
+  const styles = VARIANT_STYLES[variant ?? 'contained'][color];
+
   return (
     <Pressable
       className={twMerge(
-        'w-full bg-white p-4 rounded-xl border border-slate-200 justify-center items-center flex-row gap-x-3',
+        `w-full p-4 rounded-xl justify-center items-center flex-row gap-x-3 ${styles.button}`,
         className,
       )}
       disabled={disabled}
       onPress={onPress}
       {...rest}
     >
-      {prefixIcon && <Ionicons name={prefixIcon} size={size} color={color} />}
-      <Text className="text-center font-bold text-orange-500">{text}</Text>
-      {suffixIcon && <Ionicons name={suffixIcon} size={size} color={color} />}
+      {prefixIcon && (
+        <Lucide name={prefixIcon} size={size} className={styles.icon} />
+      )}
+      <Text className={`text-center font-bold ${styles.text}`}>{text}</Text>
+      {suffixIcon && (
+        <Lucide name={suffixIcon} size={size} className={styles.icon} />
+      )}
     </Pressable>
   );
 };
