@@ -24,6 +24,7 @@ const CharactersLayout = () => {
         name="index"
         options={
           {
+            // headerShown: false,
             // title: 'Inicio stack',
           }
         }
