@@ -5,13 +5,13 @@ import BaseButtonIcon from '@/shared/ui/BaseButtonIcon';
 import * as Haptics from 'expo-haptics';
 import { Image } from 'expo-image';
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, PressableProps, Text, View } from 'react-native';
 
-interface Props {
+interface Props extends PressableProps {
   item: CharacterResponse;
 }
 
-const CharacterCard = ({ item }: Props) => {
+const CharacterCard = ({ item, onPress, ...rest }: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoriteCharacter = () => {
@@ -25,7 +25,11 @@ const CharacterCard = ({ item }: Props) => {
   };
 
   return (
-    <View className="rounded-xl border border-slate-200 flex-row gap-x-5 p-3 justify-center items-center bg-white elevation-xl">
+    <Pressable
+      className="rounded-xl border border-slate-200 flex-row gap-x-5 p-3 justify-center items-center bg-white elevation-xl"
+      {...rest}
+      onPress={onPress}
+    >
       <View className="rounded-lg bg-slate-200">
         <Image
           contentFit="cover"
@@ -49,7 +53,7 @@ const CharacterCard = ({ item }: Props) => {
         icon="heart-outline"
         color={isFavorite ? 'red' : 'gray'}
       />
-    </View>
+    </Pressable>
   );
 };
 
