@@ -1,3 +1,5 @@
+import Ionicons from '@react-native-vector-icons/ionicons';
+import { router, usePathname } from 'expo-router';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
@@ -20,6 +22,7 @@ const getRouteLabel = (options: RouteOptions, routeName: string) => {
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
   const { state, navigation, descriptors } = props;
+  const pathname = usePathname();
 
   return (
     <DrawerContentScrollView
@@ -50,7 +53,9 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
         </View>
         {state.routes.map((route, index) => {
           // state.index es la ruta actualmente enfocada del Drawer
-          const focused = index === state.index;
+          // const focused = index === state.index;
+          const focused = index === state.index && pathname !== '/favorites';
+
           // options de este route en particular (drawerLabel, drawerIcon, etc,
           // definidas en cada <Drawer.Screen> del _layout)
           const { drawerIcon } = descriptors[route.key].options;
@@ -65,12 +70,31 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
               label={label}
               focused={focused}
               icon={drawerIcon}
-              // navigation.navigate en vez de dispatch: alcanza para cambiar
-              // de pantalla dentro del Drawer, sin manejar acciones a mano
-              onPress={() => navigation.navigate(route.name)}
+              onPress={() => {
+                // "(tabs)" ya puede estar focused con Favoritos activa
+                // adentro; navigate(route.name) ahí no cambia el tab
+                // interno, así que se fuerza el path para volver a Inicio
+                if (route.name === '(tabs)') {
+                  router.push('/characters');
+                } else {
+                  navigation.navigate(route.name);
+                }
+              }}
             />
           );
         })}
+
+        {/* Favoritos vive dentro de (tabs), no es un Drawer.Screen propio,
+        así que no aparece en state.routes: se arma este item a mano y se
+        navega por path en vez de por nombre de route del Drawer. */}
+        <CustomDrawerItem
+          label="Favoritos"
+          focused={pathname === '/favorites'}
+          icon={({ size, color }) => (
+            <Ionicons name="heart-outline" size={size} color={color} />
+          )}
+          onPress={() => router.push('/favorites')}
+        />
       </View>
       <BaseButton text="Cerrar sesión" prefixIcon="log-out-outline" />
     </DrawerContentScrollView>
