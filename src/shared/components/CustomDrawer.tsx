@@ -8,6 +8,11 @@ import {
 import { Text, View } from 'react-native';
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
+  const { navigation } = props;
+  const closeDrawer = () => {
+    navigation.closeDrawer();
+  };
+
   return (
     <DrawerContentScrollView
       {...props}
@@ -15,7 +20,7 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
       contentContainerStyle={{ flexGrow: 1 }}
     >
       <View className="flex-row items-center gap-x-5">
-        <View className="size-20 rounded-2xl bg-orange-500 justify-center">
+        <View className="size-20 rounded-2xl bg-primary justify-center">
           <Text className="text-center text-white text-3xl font-bold">G</Text>
         </View>
         <View className="flex-col flex-1">
@@ -29,6 +34,7 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
           className="bg-secondary-light rounded-full size-10 items-center justify-center"
           color="text-secondary"
           size={18}
+          onPress={closeDrawer}
         />
       </View>
 
