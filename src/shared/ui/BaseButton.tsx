@@ -2,6 +2,7 @@ import Ionicons, {
   IoniconsIconName,
 } from '@react-native-vector-icons/ionicons';
 import { Pressable, PressableProps, Text } from 'react-native';
+import { twMerge } from 'tailwind-merge';
 
 interface Props extends PressableProps {
   text: string;
@@ -19,11 +20,15 @@ const BaseButton = ({
   size = 23,
   color = 'black',
   onPress,
+  className,
   ...rest
 }: Props) => {
   return (
     <Pressable
-      className="w-full bg-white p-4 rounded-xl border border-slate-200 my-4"
+      className={twMerge(
+        'w-full bg-white p-4 rounded-xl border border-slate-200 justify-center items-center flex-row gap-x-3',
+        className,
+      )}
       disabled={disabled}
       onPress={onPress}
       {...rest}
