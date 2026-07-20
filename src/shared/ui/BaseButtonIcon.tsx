@@ -1,10 +1,8 @@
-import Ionicons, {
-  IoniconsIconName,
-} from '@react-native-vector-icons/ionicons';
+import Lucide, { LucideIconName } from '@react-native-vector-icons/lucide';
 import { Pressable, PressableProps } from 'react-native';
 
 interface Props extends PressableProps {
-  icon: IoniconsIconName;
+  icon: LucideIconName;
   size?: number;
   color?: string;
 }
@@ -24,7 +22,7 @@ const BaseButtonIcon = ({
       onLongPress={onLongPress}
       {...rest}
     >
-      <Ionicons name={icon} size={size} color={color} />
+      <Lucide name={icon} size={size} className={color} />
     </Pressable>
   );
 };

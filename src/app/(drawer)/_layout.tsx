@@ -3,6 +3,7 @@ import CustomDrawerLabel from '@/shared/components/CustomDrawerLabel';
 import Lucide from '@react-native-vector-icons/lucide';
 
 import { Drawer } from 'expo-router/drawer';
+import { Text, View } from 'react-native';
 
 const DrawerLayout = () => {
   return (
@@ -10,6 +11,21 @@ const DrawerLayout = () => {
       drawerContent={CustomDrawer}
       screenOptions={{
         // headerShown: false,
+        // header: ({}) => (
+        //   <View>
+        //     <Text>header</Text>
+        //   </View>
+        // ),
+        headerTitle: ({}) => (
+          <View>
+            <Text>header</Text>
+          </View>
+        ),
+        headerRight: ({}) => (
+          <View>
+            <Text>headerRight</Text>
+          </View>
+        ),
         drawerActiveTintColor: '#E77B49',
         overlayColor: 'rgba(0,0,0,0.4)',
         drawerActiveBackgroundColor: 'transparent', // Quitamos el fondo activo

@@ -5,7 +5,7 @@ const ProfileScreen = () => {
   return (
     <View>
       <Text>ProfileScreen</Text>
-      <BaseButton text="Cerrar sesión" prefixIcon="log-out-outline" />
+      <BaseButton text="Cerrar sesión" prefixIcon="log-in" />
     </View>
   );
 };

@@ -30,7 +30,7 @@ const CharacterCard = ({ item, onPress, ...rest }: Props) => {
       {...rest}
       onPress={onPress}
     >
-      <View className="rounded-lg bg-slate-200">
+      <View className="rounded-lg bg-frame">
         <Image
           contentFit="cover"
           // ancla el recorte de "cover" arriba, para mostrar la cara y no el cuerpo completo
@@ -44,14 +44,19 @@ const CharacterCard = ({ item, onPress, ...rest }: Props) => {
         <Text className="text-[1.3rem] font-bold">{item.name}</Text>
         <View className="flex-row items-center gap-x-4">
           <BaseBadge text={item.race} customClassBadge="rounded-md" />
-          <LabelIcon text={item.ki} prefixIcon="leaf-outline" />
+          <LabelIcon
+            text={item.ki}
+            prefixIcon="zap"
+            color="text-primary"
+            customClassText="text-primary font-semibold"
+          />
         </View>
       </View>
       <BaseButtonIcon
         onPress={handleFavoriteCharacter}
         onLongPress={handleNotFavoriteCharacter}
-        icon="heart-outline"
-        color={isFavorite ? 'red' : 'gray'}
+        icon="heart"
+        color={isFavorite ? 'text-red-500' : 'text-secondary'}
       />
     </Pressable>
   );

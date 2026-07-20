@@ -1,27 +1,30 @@
-import Ionicons from '@react-native-vector-icons/ionicons';
+import Lucide from '@react-native-vector-icons/lucide';
 import { Tabs } from 'expo-router';
 
 const TabsLayout = () => {
   return (
     <Tabs
-      screenOptions={
-        {
-          // title: 'tabs',
-          // tabBarActiveTintColor: 'indigo',
-          // headerShown: false,
-          // tabBarStyle: {
-          //   backgroundColor: 'black',
-          // },
-          // tabBarActiveBackgroundColor: 'red',
-        }
-      }
+      screenOptions={{
+        // title: 'tabs',
+        tabBarActiveTintColor: '#FF6A1A',
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#FBF3E9',
+          borderTopWidth: 1,
+          // elevation: 8, // sombra en Android
+          // shadowColor: '#000', // sombra en iOS
+          // shadowOpacity: 0.1,
+          // shadowRadius: 4,
+        },
+        // tabBarActiveBackgroundColor: 'red',
+      }}
     >
       <Tabs.Screen
         name="characters"
         options={{
           title: 'Personajes',
           tabBarIcon: ({ color }) => (
-            <Ionicons size={28} name="game-controller-outline" color={color} />
+            <Lucide size={28} name="drama" color={color} />
           ),
         }}
       />
@@ -31,7 +34,7 @@ const TabsLayout = () => {
         options={{
           title: 'Favoritos',
           tabBarIcon: ({ color }) => (
-            <Ionicons size={28} name="heart-outline" color={color} />
+            <Lucide size={28} name="heart" color={color} />
           ),
         }}
       />

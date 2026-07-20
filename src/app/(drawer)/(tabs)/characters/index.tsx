@@ -11,7 +11,7 @@ const CharactersScreen = () => {
   };
 
   return (
-    <View className="bg-red-500 flex-1">
+    <View className="bg-surface-page1 flex-1">
       <FlatList
         data={dragonBallCharacters}
         showsVerticalScrollIndicator={false}
@@ -31,6 +31,7 @@ const CharactersScreen = () => {
               text="Cargar más"
               onPress={() => fetchNextPage()}
               className="my-4"
+              color="secondary"
             />
           );
         }}

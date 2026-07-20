@@ -20,24 +20,30 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
         </View>
         <View className="flex-col flex-1">
           <Text className="font-bold text-xl">Guerrero Z</Text>
-          <Text className="text-xs">Guerrero@gmail.com</Text>
+          <Text className="text-xs text-ink-2 font-medium">
+            guerrero@gmail.com
+          </Text>
         </View>
         <BaseButtonIcon
-          icon="close"
-          className="bg-[#EEE0CC] rounded-full size-10 items-center justify-center"
-          color="brown"
+          icon="x"
+          className="bg-secondary-light rounded-full size-10 items-center justify-center"
+          color="text-secondary"
+          size={18}
         />
       </View>
 
       <View className="flex-1 mt-6 mb-4">
-        <Text className="uppercase text-sm pb-2" style={{ letterSpacing: 0.5 }}>
+        <Text
+          className="text-ink-2 uppercase text-sm pb-2"
+          style={{ letterSpacing: 0.5 }}
+        >
           Navegación
         </Text>
         {/* Draweritems */}
         <DrawerItemList {...props} />
       </View>
 
-      <BaseButton text="Cerrar sesión" prefixIcon="log-out-outline" />
+      <BaseButton text="Cerrar sesión" prefixIcon="log-out" variant="soft" />
     </DrawerContentScrollView>
   );
 };
