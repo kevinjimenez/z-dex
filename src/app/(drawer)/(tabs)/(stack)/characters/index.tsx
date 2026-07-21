@@ -24,10 +24,10 @@ const CharactersScreen = () => {
         <DrawerMenuButton />
 
         <View className="flex-col flex-1 gap-y-1">
-          <Text className="text-sm font-medium text-ink-3">
+          <Text className="text-sm text-ink-3 font-medium">
             Bienvenido de nuevo
           </Text>
-          <Text className="font-semibold text-2xl">Universo Z</Text>
+          <Text className="font-oswald-bold text-2xl">Universo Z</Text>
         </View>
 
         <View className="size-12 rounded-xl bg-primary justify-center">
