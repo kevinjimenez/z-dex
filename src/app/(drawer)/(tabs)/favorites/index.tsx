@@ -1,8 +1,10 @@
 import { Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const FavoritesScreen = () => {
+  const { top } = useSafeAreaInsets();
   return (
-    <View>
+    <View style={{ paddingTop: top }}>
       <Text>FavoritesScreen</Text>
     </View>
   );

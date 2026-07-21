@@ -13,6 +13,8 @@ module.exports = {
           DEFAULT: '#FF6A1A',
           50: '#FFEDEA',
           100: '#FFDAD4',
+          300: '#FF9477',
+          500: '#D75600',
           light: '#FFA23E',
         },
         secondary: {
