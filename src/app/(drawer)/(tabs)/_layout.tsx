@@ -31,6 +31,16 @@ const TabsLayout = () => {
       />
 
       <Tabs.Screen
+        name="planets/index"
+        options={{
+          title: 'Planetas',
+          tabBarIcon: ({ color }) => (
+            <Lucide size={28} name="earth" color={color} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
         name="favorites/index"
         options={{
           title: 'Favoritos',
