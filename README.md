@@ -74,6 +74,42 @@ Los componentes de este proyecto (`BaseButton`, `BaseButtonIcon`, etc.) pintan l
 
 Esto funciona porque en `src/app/_layout.tsx` se registra `cssInterop(Lucide, { className: 'style' })`, que le enseña a NativeWind a traducir el `className` del ícono a su `style` (y de ahí al `color` real). Por eso el valor de `color`/`className` debe ser una clase de texto válida (`text-primary`, `text-white`, `text-ink`, etc.), tomada de los colores definidos en `tailwind.config.js` (`primary`, `secondary`, `ink`, `muted`, `surface`, `frame`, `badge`, `border`, `line`), no un string de color libre.
 
+### Gradientes
+
+`expo-linear-gradient` solo hace degradados **lineales** (una línea recta, no radiales) — la dirección se controla con `start`/`end`, dos puntos en un plano fraccional de `0` a `1` relativo al tamaño de la caja (no importa si mide 50px o 500px). `x` crece hacia la derecha, `y` crece hacia abajo (como en pantalla):
+
+```
+        x: 0 ─────────────── x: 1
+      ┌─────────────────────────┐
+y: 0  │ (0,0)             (1,0) │
+      │  ╲                 ╱    │
+      │   ╲               ╱     │
+      │    (0.5, 0.5) centro    │
+      │   ╱               ╲     │
+      │  ╱                 ╲    │
+y: 1  │ (0,1)             (1,1) │
+      └─────────────────────────┘
+```
+
+Ejemplos:
+- `{x:0,y:0} → {x:0,y:1}` = de arriba a abajo (vertical, el default si no pasás `start`/`end`)
+- `{x:0,y:0} → {x:1,y:0}` = de izquierda a derecha (horizontal)
+- `{x:1,y:0} → {x:0.5,y:0.5}` = desde la esquina superior-derecha hacia el centro (diagonal)
+
+`start` es dónde "empieza" el primer color del array `colors`, `end` es dónde termina el último — lo que quede fuera de ese segmento se rellena con el color del extremo más cercano.
+
+**Ojo con `'transparent'`**: es literalmente `rgba(0,0,0,0)` (negro con alpha 0). Si lo mezclás con un color en el medio del degradado, el motor interpola RGB y alpha por separado, y aparece una línea/banda oscura visible en la transición. Usá la versión transparente del mismo color en vez de `'transparent'`:
+
+```tsx
+// mal — puede salir una línea oscura en el medio
+colors={['transparent', 'rgba(251,243,233,0.6)', '#FBF3E9']}
+
+// bien — mismo RGB en los 3 stops, solo cambia el alpha
+colors={['rgba(251,243,233,0)', 'rgba(251,243,233,0.6)', '#FBF3E9']}
+```
+
+Si necesitás un degradado **radial** (que irradie desde un punto, no en línea recta), `expo-linear-gradient` no lo soporta — hace falta `react-native-svg` con su `<RadialGradient>`.
+
 ### Other setup steps
 
 - To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)

@@ -21,13 +21,21 @@ const CharactersLayout = () => {
       }}
     >
       <Stack.Screen
-        name="index"
+        name="characters/index"
         options={
           {
             // headerShown: false,
             // title: 'Inicio stack',
           }
         }
+      />
+      <Stack.Screen
+        name="detail/[id]"
+        options={{
+          presentation: 'fullScreenModal',
+          // headerShown: false,
+          // title: 'Inicio stack',
+        }}
       />
     </Stack>
   );

@@ -1,11 +1,13 @@
-import BaseButton from '@/shared/ui/BaseButton';
+import DrawerMenuButton from '@/shared/components/DrawerMenuButton';
 import { Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const ProfileScreen = () => {
+  const { top } = useSafeAreaInsets();
   return (
-    <View>
+    <View style={{ paddingTop: top }}>
       <Text>ProfileScreen</Text>
-      <BaseButton text="Cerrar sesión" prefixIcon="log-in" />
+      <DrawerMenuButton />
     </View>
   );
 };

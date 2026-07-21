@@ -16,7 +16,10 @@ const DrawerLayout = () => {
         //   </View>
         // ),
         // headerTitle: ({}) => (
-        //   <View>
+        //   <View className="flex-col">
+        //     <Text>header</Text>
+        //     <Text>header</Text>
+        //     <Text>header</Text>
         //     <Text>header</Text>
         //   </View>
         // ),
@@ -55,6 +58,7 @@ const DrawerLayout = () => {
       <Drawer.Screen
         name="(tabs)"
         options={{
+          // headerShown: false,
           // headerShadowVisible: false,
           drawerLabel: ({ color }) => (
             <CustomDrawerLabel

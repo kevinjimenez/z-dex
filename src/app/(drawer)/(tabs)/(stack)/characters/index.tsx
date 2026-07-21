@@ -1,5 +1,5 @@
 import CharacterCard from '@/features/characters/components/CharacterCard';
-import { useCharacters } from '@/hooks/useCharacters';
+import { useCharacters } from '@/features/characters/hooks/useCharacters';
 import DrawerMenuButton from '@/shared/components/DrawerMenuButton';
 import BaseButton from '@/shared/ui/BaseButton';
 import { router } from 'expo-router';
@@ -8,9 +8,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const CharactersScreen = () => {
   const { top } = useSafeAreaInsets();
-  const { dragonBallCharacters, fetchNextPage, hasNextPage } = useCharacters();
+  const {
+    dragonBallCharacters,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useCharacters();
   const goToCharacterDetail = (id: number) => {
-    router.push(`/characters/${id}`);
+    router.push(`/detail/${id}`);
   };
 
   return (
@@ -42,6 +47,17 @@ const CharactersScreen = () => {
           />
         )}
         ListFooterComponent={() => {
+          if (isFetchingNextPage) {
+            // return <ActivityIndicator className="my-4" color="#FF6A1A" />;
+            return (
+              <BaseButton
+                disabled
+                text="Cargando..."
+                className="my-4"
+                color="secondary"
+              />
+            );
+          }
           if (!hasNextPage) return null;
           return (
             <BaseButton
