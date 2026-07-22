@@ -4,6 +4,8 @@ import { ApiResponse } from '@/interfaces/api-response.interface';
 
 export const charactersAction = async (page: number) => {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+
     const { data } = await dragonBallApi.get<ApiResponse<CharacterResponse[]>>(
       '/characters',
       {

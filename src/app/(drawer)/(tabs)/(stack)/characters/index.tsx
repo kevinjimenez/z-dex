@@ -1,54 +1,48 @@
 import CharacterCard from '@/features/characters/components/CharacterCard';
+import CharacterCardSkeleton from '@/features/characters/components/CharacterCardSkeleton';
+import CharacterList from '@/features/characters/components/CharacterList';
 import CharacterHeader from '@/features/characters/components/CharcaterHeader';
 import { useCharacters } from '@/features/characters/hooks/useCharacters';
-import BaseButton from '@/shared/ui/BaseButton';
+import ListSkeleton from '@/shared/components/ListSkeleton';
+import ScreenContainer from '@/shared/components/ScreenContainer';
 import { router } from 'expo-router';
-import { ActivityIndicator, FlatList, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const CharactersScreen = () => {
-  const { top } = useSafeAreaInsets();
   const {
     dragonBallCharacters,
+    isLoading,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
   } = useCharacters();
-  const goToCharacterDetail = (id: number) => {
+  const goToDetail = (id: number) => {
     router.push(`/detail/${id}`);
   };
 
   return (
-    <View className="bg-surface-page1 flex-1 px-6" style={{ paddingTop: top }}>
+    <ScreenContainer>
       <CharacterHeader />
-      <FlatList
-        data={dragonBallCharacters}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => String(item.id)}
-        ItemSeparatorComponent={() => <View className="h-4" />}
-        renderItem={({ item }) => (
-          <CharacterCard
-            key={String(item.id)}
-            item={item}
-            onPress={() => goToCharacterDetail(item.id)}
-          />
-        )}
-        ListFooterComponent={() => {
-          if (isFetchingNextPage) {
-            return <ActivityIndicator className="my-4" color="#FF6A1A" />;
-          }
-          if (!hasNextPage) return null;
-          return (
-            <BaseButton
-              text="Cargar más"
-              onPress={() => fetchNextPage()}
-              className="my-4"
-              color="secondary"
+      {isLoading ? (
+        <ListSkeleton
+          length={10}
+          renderItem={() => <CharacterCardSkeleton />}
+        />
+      ) : (
+        <CharacterList
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+          data={dragonBallCharacters}
+          renderItem={({ item }) => (
+            <CharacterCard
+              key={String(item.id)}
+              item={item}
+              onPress={() => goToDetail(item.id)}
             />
-          );
-        }}
-      />
-    </View>
+          )}
+        />
+      )}
+    </ScreenContainer>
   );
 };
 
