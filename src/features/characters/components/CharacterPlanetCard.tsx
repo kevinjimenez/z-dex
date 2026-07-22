@@ -22,10 +22,8 @@ const CharacterPlanetCard = ({ image, name, isDestroyed }: Props) => {
           color="text-white"
           customClassText="text-white text-xs font-dmsans-regular"
         />
-        <View className="flex-row items-center gap-x-2 flex-1">
-          <Text className="text-white font-oswald-bold text-2xl flex-1">
-            {name}
-          </Text>
+        <View className="flex-row items-center gap-x-2">
+          <Text className="text-white font-oswald-bold text-2xl">{name}</Text>
           <BaseBadge
             customClassBadge="bg-primary"
             customClassText="text-white font-dmsans-semibold"
