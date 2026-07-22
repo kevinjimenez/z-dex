@@ -1,8 +1,7 @@
 import CharacterHero from '@/features/characters/components/CharacterHero';
-import CharacterPlanetCard from '@/features/characters/components/CharacterPlanetCard';
+import CharacterInfoSection from '@/features/characters/components/CharacterInfoSection';
 import CharacterTransformations from '@/features/characters/components/CharacterTransformations';
 import { useCharacter } from '@/features/characters/hooks/useCharacters';
-import StatCard from '@/shared/components/StatCard';
 import BaseButton from '@/shared/ui/BaseButton';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { StackActions } from 'expo-router/build/react-navigation';
@@ -35,49 +34,22 @@ const ComponentName = () => {
         onToggleFavorite={toggleFavorite}
       />
 
-      <View className="flex-col gap-y-3">
-        <View className="flex-row flex-wrap gap-x-3">
-          <StatCard
-            classValueContainer="gap-y-2"
-            title="Ki base"
-            text={dragonBallCharacter.data?.ki ?? ''}
-          />
-
-          <StatCard
-            classValueContainer="gap-y-2"
-            title="Ki máximo"
-            text={dragonBallCharacter.data?.maxKi ?? ''}
-          />
-        </View>
-
-        <View className="flex-row flex-wrap gap-2">
-          <StatCard
-            title="Género"
-            text={dragonBallCharacter.data?.gender ?? ''}
-            suffixIcon="users"
-            classContainer="flex-row items-center gap-x-3"
-            classTitle="text-xs font-dmsans-regular capitalize"
-            classText="font-dmsans-semibold text-lg text-black"
-          />
-
-          <StatCard
-            title="Afiliación"
-            text={dragonBallCharacter.data?.affiliation ?? ''}
-            suffixIcon="hand-fist"
-            classContainer="flex-row items-center gap-x-3"
-            classTitle="text-xs font-dmsans-regular capitalize"
-            classText="font-dmsans-semibold text-lg text-black"
-          />
-        </View>
-
-        <CharacterPlanetCard
-          image={dragonBallCharacter.data?.originPlanet.image ?? ''}
-          name={dragonBallCharacter.data?.originPlanet.name ?? ''}
-          isDestroyed={
-            dragonBallCharacter.data?.originPlanet.isDestroyed ?? false
+      <CharacterInfoSection
+        ki={dragonBallCharacter.data?.ki ?? ''}
+        maxKi={dragonBallCharacter.data?.maxKi ?? ''}
+        gender={dragonBallCharacter.data?.gender ?? ''}
+        affiliation={dragonBallCharacter.data?.affiliation ?? ''}
+        planet={
+          dragonBallCharacter.data?.originPlanet ?? {
+            deletedAt: null,
+            description: '',
+            id: 1,
+            image: '',
+            isDestroyed: false,
+            name: '',
           }
-        />
-      </View>
+        }
+      />
 
       {(dragonBallCharacter.data?.transformations ?? []).length > 0 && (
         <CharacterTransformations
