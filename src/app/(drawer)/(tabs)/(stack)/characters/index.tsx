@@ -1,7 +1,7 @@
 import CharacterCard from '@/features/characters/components/CharacterCard';
 import CharacterCardSkeleton from '@/features/characters/components/CharacterCardSkeleton';
 import CharacterList from '@/features/characters/components/CharacterList';
-import CharacterHeader from '@/features/characters/components/CharcaterHeader';
+import CharacterHeader from '@/features/characters/components/CharacterHeader';
 import { useCharacters } from '@/features/characters/hooks/useCharacters';
 import ListSkeleton from '@/shared/components/common/ListSkeleton';
 import ScreenContainer from '@/shared/components/common/ScreenContainer';

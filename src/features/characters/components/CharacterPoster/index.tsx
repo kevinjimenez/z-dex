@@ -1,14 +1,9 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import CharacterAvatar from '../CharacterAvatar';
+import { CharacterPosterProps } from './interfaces/character-poster.interface';
 import PosterTitle from './PosterTitle';
 
-interface Props {
-  image: string;
-  race: string;
-  name: string;
-}
-
-const CharacterPoster = ({ image, race, name }: Props) => {
+const CharacterPoster = ({ image, race, name }: CharacterPosterProps) => {
   return (
     <>
       <CharacterAvatar

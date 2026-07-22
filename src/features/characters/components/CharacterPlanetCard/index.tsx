@@ -1,15 +1,14 @@
 import LabelIcon from '@/shared/components/common/LabelIcon';
 import BaseBadge from '@/shared/components/ui/BaseBadge';
 import { Text, View } from 'react-native';
+import { CharacterPlanetCardProps } from './interfaces/character-planet-card.interface';
 import PlanetPoster from './PlanetPoster';
 
-interface Props {
-  image: string;
-  name: string;
-  isDestroyed: boolean;
-}
-
-const CharacterPlanetCard = ({ image, name, isDestroyed }: Props) => {
+const CharacterPlanetCard = ({
+  image,
+  name,
+  isDestroyed,
+}: CharacterPlanetCardProps) => {
   return (
     <View className="w-full h-28 rounded-xl overflow-hidden relative bg-black">
       <PlanetPoster image={image} contentFit="cover" />

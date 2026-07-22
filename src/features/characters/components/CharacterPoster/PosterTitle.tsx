@@ -1,11 +1,7 @@
 import { Text, View } from 'react-native';
+import { PosterTitleProps } from './interfaces/poster-title.interface';
 
-interface Props {
-  race: string;
-  name: string;
-}
-
-const PosterTitle = ({ race, name }: Props) => {
+const PosterTitle = ({ race, name }: PosterTitleProps) => {
   return (
     <View className="flex-col gap-y-1 absolute bottom-0 z-10">
       <Text className="text-primary uppercase font-dmsans-bold text-xs">

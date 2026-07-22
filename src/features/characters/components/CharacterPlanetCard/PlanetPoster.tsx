@@ -1,11 +1,8 @@
-import { Image, ImageProps } from 'expo-image';
+import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
+import { PlanetPosterProps } from './interfaces/planet-poster.interface';
 
-interface Props extends ImageProps {
-  image: string;
-}
-
-const PlanetPoster = ({ image, ...rest }: Props) => {
+const PlanetPoster = ({ image, ...rest }: PlanetPosterProps) => {
   return (
     <>
       <Image
