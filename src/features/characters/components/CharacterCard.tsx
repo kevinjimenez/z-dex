@@ -30,7 +30,12 @@ const CharacterCard = ({ item, onPress, ...rest }: Props) => {
       {...rest}
       onPress={onPress}
     >
-      <CharacterAvatar uri={item.image} contentPosition="top" />
+      <CharacterAvatar
+        uri={item.image}
+        transition={1000}
+        contentPosition="top"
+        contentFit="cover"
+      />
       <View className="flex-col justify-center flex-1 gap-y-1">
         <Text className="text-[1.3rem] font-oswald-bold">{item.name}</Text>
         <View className="flex-row items-center gap-x-4">
