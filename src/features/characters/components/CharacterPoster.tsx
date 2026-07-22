@@ -11,7 +11,7 @@ interface Props {
 
 const CharacterPoster = ({ image, race, name }: Props) => {
   return (
-    <View className="mb-6">
+    <View className="">
       <CharacterAvatar
         customClassContainer="rounded-lg bg-white w-full justify-center items-center"
         uri={image}

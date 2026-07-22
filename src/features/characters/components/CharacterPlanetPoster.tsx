@@ -5,7 +5,7 @@ interface Props extends ImageProps {
   image: string;
 }
 
-const OriginPlanetPoster = ({ image, ...rest }: Props) => {
+const CharacterPlanetPoster = ({ image, ...rest }: Props) => {
   return (
     <>
       <Image
@@ -29,4 +29,4 @@ const OriginPlanetPoster = ({ image, ...rest }: Props) => {
   );
 };
 
-export default OriginPlanetPoster;
+export default CharacterPlanetPoster;

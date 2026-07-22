@@ -1,7 +1,7 @@
-import { Text, View } from 'react-native';
-import OriginPlanetPoster from './OriginPlanetPoster';
 import LabelIcon from '@/shared/components/LabelIcon';
 import BaseBadge from '@/shared/ui/BaseBadge';
+import { Text, View } from 'react-native';
+import CharacterPlanetPoster from './CharacterPlanetPoster';
 
 interface Props {
   image: string;
@@ -9,10 +9,10 @@ interface Props {
   isDestroyed: boolean;
 }
 
-const OriginPlanetCard = ({ image, name, isDestroyed }: Props) => {
+const CharacterPlanetCard = ({ image, name, isDestroyed }: Props) => {
   return (
     <View className="w-full h-28 rounded-xl overflow-hidden relative bg-black">
-      <OriginPlanetPoster image={image} contentFit="cover" />
+      <CharacterPlanetPoster image={image} contentFit="cover" />
 
       <View className="flex-col absolute bottom-3 left-3 gap-y-1">
         <LabelIcon
@@ -22,8 +22,10 @@ const OriginPlanetCard = ({ image, name, isDestroyed }: Props) => {
           color="text-white"
           customClassText="text-white text-xs font-dmsans-regular"
         />
-        <View className="flex-row items-center gap-x-2">
-          <Text className="text-white font-oswald-bold text-2xl">{name}</Text>
+        <View className="flex-row items-center gap-x-2 flex-1">
+          <Text className="text-white font-oswald-bold text-2xl flex-1">
+            {name}
+          </Text>
           <BaseBadge
             customClassBadge="bg-primary"
             customClassText="text-white font-dmsans-semibold"
@@ -35,4 +37,4 @@ const OriginPlanetCard = ({ image, name, isDestroyed }: Props) => {
   );
 };
 
-export default OriginPlanetCard;
+export default CharacterPlanetCard;
