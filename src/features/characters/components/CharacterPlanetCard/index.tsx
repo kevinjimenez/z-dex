@@ -1,7 +1,7 @@
 import LabelIcon from '@/shared/components/common/LabelIcon';
 import BaseBadge from '@/shared/components/ui/BaseBadge';
 import { Text, View } from 'react-native';
-import CharacterPlanetPoster from './CharacterPlanetPoster';
+import PlanetPoster from './PlanetPoster';
 
 interface Props {
   image: string;
@@ -12,7 +12,7 @@ interface Props {
 const CharacterPlanetCard = ({ image, name, isDestroyed }: Props) => {
   return (
     <View className="w-full h-28 rounded-xl overflow-hidden relative bg-black">
-      <CharacterPlanetPoster image={image} contentFit="cover" />
+      <PlanetPoster image={image} contentFit="cover" />
 
       <View className="flex-col absolute bottom-3 left-3 gap-y-1">
         <LabelIcon

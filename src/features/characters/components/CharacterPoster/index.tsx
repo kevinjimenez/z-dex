@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import CharacterAvatar from './CharacterAvatar';
-import CharacterTitle from './CharacterTitle';
+import CharacterAvatar from '../CharacterAvatar';
+import PosterTitle from './PosterTitle';
 
 interface Props {
   image: string;
@@ -20,7 +20,7 @@ const CharacterPoster = ({ image, race, name }: Props) => {
         height={360}
       />
 
-      <CharacterTitle race={race} name={name} />
+      <PosterTitle race={race} name={name} />
 
       {/*Bajo hacia arriba*/}
       <LinearGradient

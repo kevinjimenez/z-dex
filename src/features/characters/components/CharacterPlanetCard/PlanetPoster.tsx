@@ -5,11 +5,10 @@ interface Props extends ImageProps {
   image: string;
 }
 
-const CharacterPlanetPoster = ({ image, ...rest }: Props) => {
+const PlanetPoster = ({ image, ...rest }: Props) => {
   return (
     <>
       <Image
-        // contentFit="cover"
         source={{ uri: image }}
         style={{ width: '100%', height: '100%' }}
         {...rest}
@@ -29,4 +28,4 @@ const CharacterPlanetPoster = ({ image, ...rest }: Props) => {
   );
 };
 
-export default CharacterPlanetPoster;
+export default PlanetPoster;

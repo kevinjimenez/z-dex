@@ -5,7 +5,7 @@ interface Props {
   name: string;
 }
 
-const CharacterTitle = ({ race, name }: Props) => {
+const PosterTitle = ({ race, name }: Props) => {
   return (
     <View className="flex-col gap-y-1 absolute bottom-0 z-10">
       <Text className="text-primary uppercase font-dmsans-bold text-xs">
@@ -18,4 +18,4 @@ const CharacterTitle = ({ race, name }: Props) => {
   );
 };
 
-export default CharacterTitle;
+export default PosterTitle;
