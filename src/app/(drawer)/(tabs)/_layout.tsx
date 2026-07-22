@@ -30,6 +30,7 @@ const TabsLayout = () => {
           // para Android, donde el modal es solo una animación y no lo oculta
           const isDetail =
             Platform.OS === 'android' && focusedRouteName.startsWith('detail');
+          // const isDetail = focusedRouteName.startsWith('detail');
 
           return {
             title: 'Personajes',
