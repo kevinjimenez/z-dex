@@ -48,10 +48,13 @@ const ComponentName = () => {
         />
 
         <View className="flex-col gap-y-1 absolute bottom-0 z-10">
-          <Text className="text-primary uppercase font-bold text-xs">
+          <Text className="text-primary uppercase font-dmsans-bold text-xs">
             {dragonBallCharacter.data?.race}
           </Text>
-          <Text className="font-extrabold text-4xl">
+          <Text
+            className="font-oswald-bold text-5xl"
+            style={{ lineHeight: 56 }}
+          >
             {dragonBallCharacter.data?.name}
           </Text>
         </View>
@@ -109,14 +112,21 @@ const ComponentName = () => {
       <View className="flex-col gap-y-3">
         <View className="flex-row flex-wrap gap-x-3">
           <View className="flex-1 bg-white rounded-xl border border-gray-200 p-4">
-            <Text className="uppercase text-xs">Ki base</Text>
-            <Text className="text-primary text-2xl font-bold">
+            <Text className="uppercase text-xs font-dmsans-regular">
+              Ki base
+            </Text>
+            <Text className="text-primary text-2xl font-oswald-bold">
               {dragonBallCharacter.data?.ki}
             </Text>
           </View>
           <View className="flex-1 bg-white rounded-xl border border-gray-200 p-4">
-            <Text className="uppercase text-xs">Ki máximo</Text>
-            <Text className="text-primary text-2xl font-bold" numberOfLines={2}>
+            <Text className="uppercase text-xs font-dmsans-regular">
+              Ki máximo
+            </Text>
+            <Text
+              className="text-primary text-2xl font-oswald-bold"
+              numberOfLines={2}
+            >
               {dragonBallCharacter.data?.maxKi}
             </Text>
           </View>
@@ -126,8 +136,8 @@ const ComponentName = () => {
           <View className="flex-1 bg-white rounded-xl border border-gray-200 p-4 flex-row items-center gap-x-3">
             <Lucide name="users" size={16} />
             <View className="flex-col">
-              <Text className="text-xs">Género</Text>
-              <Text className="font-bold">
+              <Text className="text-xs font-dmsans-regular">Género</Text>
+              <Text className="font-dmsans-semibold">
                 {dragonBallCharacter.data?.gender}
               </Text>
             </View>
@@ -135,8 +145,8 @@ const ComponentName = () => {
           <View className="flex-1 bg-white rounded-xl border border-gray-200 p-4 flex-row items-center gap-x-3">
             <Lucide name="hand-fist" size={16} />
             <View className="flex-col">
-              <Text className="text-xs">Afiliación</Text>
-              <Text className="font-bold">
+              <Text className="text-xs font-dmsans-regular">Afiliación</Text>
+              <Text className="font-dmsans-semibold">
                 {dragonBallCharacter.data?.affiliation}
               </Text>
             </View>
@@ -167,15 +177,15 @@ const ComponentName = () => {
               prefixIcon="earth"
               text="Planeta de origen"
               color="text-white"
-              customClassText="text-white text-xs"
+              customClassText="text-white text-xs font-dmsans-regular"
             />
             <View className="flex-row items-center gap-x-2">
-              <Text className="text-white font-bold text-2xl">
+              <Text className="text-white font-oswald-bold text-2xl">
                 {dragonBallCharacter.data?.originPlanet.name}
               </Text>
               <BaseBadge
                 customClassBadge="bg-primary"
-                customClassText="text-white font-semibold"
+                customClassText="text-white font-dmsans-semibold"
                 text={
                   dragonBallCharacter.data?.originPlanet.isDestroyed
                     ? 'Destruido'
@@ -187,9 +197,9 @@ const ComponentName = () => {
         </View>
       </View>
 
-      <View className="">
+      <View>
         <View className="flex-row items-center gap-x-2 my-2">
-          <Text className="uppercase text-lg font-bold text-secondary">
+          <Text className="uppercase text-lg font-oswald-bold text-secondary">
             Transformaciones
           </Text>
 
@@ -226,12 +236,12 @@ const ComponentName = () => {
                 />
               </View>
               <View className="flex-col w-28">
-                <Text className="font-bold text-xs" numberOfLines={1}>
+                <Text className="font-dmsans-bold text-xs" numberOfLines={1}>
                   {item.name}
                 </Text>
                 <LabelIcon
                   text={item.ki}
-                  customClassText="text-xs font-bold text-primary"
+                  customClassText="text-xs font-dmsans-bold text-primary"
                   prefixIcon="zap"
                   color="text-primary"
                 />
@@ -242,8 +252,8 @@ const ComponentName = () => {
       </View>
 
       <View className="flex-1 gap-y-2 mt-8">
-        <Text className="uppercase text-lg font-bold">Biografía</Text>
-        <Text className="text-base text-pretty">
+        <Text className="uppercase text-lg font-oswald-bold">Biografía</Text>
+        <Text className="text-base text-pretty font-dmsans-regular">
           {dragonBallCharacter.data?.description}
         </Text>
       </View>

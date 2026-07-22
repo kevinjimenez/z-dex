@@ -79,7 +79,9 @@ const BaseButton = ({
       {prefixIcon && (
         <Lucide name={prefixIcon} size={size} className={styles.icon} />
       )}
-      <Text className={`text-center font-bold ${styles.text}`}>{text}</Text>
+      <Text className={`text-center font-dmsans-bold ${styles.text}`}>
+        {text}
+      </Text>
       {suffixIcon && (
         <Lucide name={suffixIcon} size={size} className={styles.icon} />
       )}
