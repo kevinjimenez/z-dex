@@ -9,7 +9,7 @@ import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const ComponentName = () => {
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
   const navigation = useNavigation();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { dragonBallCharacter } = useCharacter(+id);
@@ -23,7 +23,7 @@ const ComponentName = () => {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      style={{ paddingTop: top }}
+      contentContainerStyle={{ paddingTop: top, paddingBottom: bottom }}
       className="bg-surface-page1 flex-1 px-8"
     >
       <CharacterHero
@@ -67,7 +67,7 @@ const ComponentName = () => {
       <BaseButton
         text="AGREGAR A FAVORITOS"
         prefixIcon="heart"
-        // className="my-8"
+        className="my-8"
       />
     </ScrollView>
   );

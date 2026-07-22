@@ -9,8 +9,8 @@ interface Props {
 
 const CharacterTransformations = ({ transformations }: Props) => {
   return (
-    <View>
-      <View className="flex-row items-center gap-x-2">
+    <View className="mb-10">
+      <View className="flex-row items-center gap-x-2 mb-4">
         <Text className="uppercase text-lg font-oswald-bold text-secondary">
           Transformaciones
         </Text>

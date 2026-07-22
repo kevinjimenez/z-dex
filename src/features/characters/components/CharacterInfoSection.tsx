@@ -19,35 +19,37 @@ const CharacterInfoSection = ({
   planet,
 }: Props) => {
   return (
-    <View className="flex-col gap-y-3">
-      <View className="flex-row flex-wrap gap-x-3">
-        <StatCard classValueContainer="gap-y-2" title="Ki base" text={ki} />
+    <View className="flex-col gap-y-3 mb-8">
+      <View className="mb-2 gap-y-3">
+        <View className="flex-row flex-wrap gap-x-3">
+          <StatCard classValueContainer="gap-y-2" title="Ki base" text={ki} />
 
-        <StatCard
-          classValueContainer="gap-y-2"
-          title="Ki máximo"
-          text={maxKi}
-        />
-      </View>
+          <StatCard
+            classValueContainer="gap-y-2"
+            title="Ki máximo"
+            text={maxKi}
+          />
+        </View>
 
-      <View className="flex-row flex-wrap gap-2">
-        <StatCard
-          title="Género"
-          text={gender}
-          suffixIcon="users"
-          classContainer="flex-row items-center gap-x-3"
-          classTitle="text-xs font-dmsans-regular capitalize"
-          classText="font-dmsans-semibold text-lg text-black"
-        />
+        <View className="flex-row flex-wrap gap-x-2">
+          <StatCard
+            title="Género"
+            text={gender}
+            suffixIcon="users"
+            classContainer="flex-row items-center gap-x-3"
+            classTitle="text-xs font-dmsans-regular capitalize"
+            classText="font-dmsans-semibold text-lg text-black"
+          />
 
-        <StatCard
-          title="Afiliación"
-          text={affiliation}
-          suffixIcon="hand-fist"
-          classContainer="flex-row items-center gap-x-3"
-          classTitle="text-xs font-dmsans-regular capitalize"
-          classText="font-dmsans-semibold text-lg text-black"
-        />
+          <StatCard
+            title="Afiliación"
+            text={affiliation}
+            suffixIcon="hand-fist"
+            classContainer="flex-row items-center gap-x-3"
+            classTitle="text-xs font-dmsans-regular capitalize"
+            classText="font-dmsans-semibold text-lg text-black"
+          />
+        </View>
       </View>
 
       <CharacterPlanetCard
