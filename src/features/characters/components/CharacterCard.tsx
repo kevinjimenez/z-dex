@@ -3,9 +3,9 @@ import LabelIcon from '@/shared/components/LabelIcon';
 import BaseBadge from '@/shared/ui/BaseBadge';
 import BaseButtonIcon from '@/shared/ui/BaseButtonIcon';
 import * as Haptics from 'expo-haptics';
-import { Image } from 'expo-image';
 import { useState } from 'react';
 import { Pressable, PressableProps, Text, View } from 'react-native';
+import CharacterAvatar from './CharacterAvatar';
 
 interface Props extends PressableProps {
   item: CharacterResponse;
@@ -30,25 +30,21 @@ const CharacterCard = ({ item, onPress, ...rest }: Props) => {
       {...rest}
       onPress={onPress}
     >
-      <View className="rounded-lg bg-frame">
-        <Image
-          contentFit="cover"
-          // ancla el recorte de "cover" arriba, para mostrar la cara y no el cuerpo completo
-          contentPosition="top"
-          transition={1000}
-          source={{ uri: item.image }}
-          style={{ width: 60, height: 60 }}
-        />
-      </View>
-      <View className="flex-col justify-center flex-1 gap-y-2">
-        <Text className="text-[1.3rem] font-bold">{item.name}</Text>
+      <CharacterAvatar
+        uri={item.image}
+        transition={1000}
+        contentPosition="top"
+        contentFit="cover"
+      />
+      <View className="flex-col justify-center flex-1 gap-y-1">
+        <Text className="text-[1.3rem] font-oswald-bold">{item.name}</Text>
         <View className="flex-row items-center gap-x-4">
-          <BaseBadge text={item.race} customClassBadge="rounded-md" />
+          <BaseBadge text={item.race} />
           <LabelIcon
             text={item.ki}
             prefixIcon="zap"
             color="text-primary"
-            customClassText="text-primary font-semibold"
+            customClassText="text-primary font-dmsans-bold"
           />
         </View>
       </View>

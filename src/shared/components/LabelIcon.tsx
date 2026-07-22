@@ -29,7 +29,7 @@ const LabelIcon = ({
       )}
     >
       {prefixIcon && <Lucide name={prefixIcon} size={size} className={color} />}
-      <Text className={twMerge('text-sm font-normal', customClassText)}>
+      <Text className={twMerge('text-sm font-dmsans-regular', customClassText)}>
         {text}
       </Text>
       {suffixIcon && <Lucide name={suffixIcon} size={size} className={color} />}

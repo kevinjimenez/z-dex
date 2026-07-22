@@ -1,18 +1,31 @@
-import Lucide from '@react-native-vector-icons/lucide';
+import Lucide, { LucideIconName } from '@react-native-vector-icons/lucide';
 import { useNavigation } from 'expo-router';
 import { DrawerActions } from 'expo-router/build/react-navigation';
 import { useDrawerProgress } from 'expo-router/drawer';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, PressableProps } from 'react-native';
 import Animated, {
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import { twMerge } from 'tailwind-merge';
 
-const DrawerMenuButton = () => {
+interface Props extends PressableProps {
+  openIcon?: LucideIconName;
+  size?: number;
+  closeIcon?: LucideIconName;
+}
+
+const CustomDrawerMenuButton = ({
+  openIcon = 'hamburger',
+  closeIcon = 'menu',
+  size = 30,
+  className,
+  ...rest
+}: Props) => {
   const navigation = useNavigation();
   const progress = useDrawerProgress(); // SharedValue 0 (cerrado) → 1 (abierto)
 
-  const hamburgerStyle = useAnimatedStyle(() => ({
+  const openStyle = useAnimatedStyle(() => ({
     opacity: interpolate(progress.value, [0, 1], [1, 0]),
     transform: [
       { rotate: `${interpolate(progress.value, [0, 1], [0, 90])}deg` },
@@ -34,16 +47,20 @@ const DrawerMenuButton = () => {
   return (
     <Pressable
       onPress={toggleDrawer}
-      className="bg-white size-12 items-center justify-center rounded-lg border border-gray-300"
+      className={twMerge(
+        'bg-white size-14 items-center justify-center rounded-2xl border border-gray-300',
+        className,
+      )}
+      {...rest}
     >
-      <Animated.View style={hamburgerStyle}>
-        <Lucide name="hamburger" size={30} />
+      <Animated.View style={openStyle}>
+        <Lucide name={openIcon} size={size} />
       </Animated.View>
       <Animated.View style={closeStyle}>
-        <Lucide name="menu" size={30} />
+        <Lucide name={closeIcon} size={size} />
       </Animated.View>
     </Pressable>
   );
 };
 
-export default DrawerMenuButton;
+export default CustomDrawerMenuButton;

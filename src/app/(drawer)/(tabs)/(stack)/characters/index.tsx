@@ -1,9 +1,9 @@
 import CharacterCard from '@/features/characters/components/CharacterCard';
+import CharacterHeader from '@/features/characters/components/CharcaterHeader';
 import { useCharacters } from '@/features/characters/hooks/useCharacters';
-import DrawerMenuButton from '@/shared/components/DrawerMenuButton';
 import BaseButton from '@/shared/ui/BaseButton';
 import { router } from 'expo-router';
-import { FlatList, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const CharactersScreen = () => {
@@ -20,20 +20,7 @@ const CharactersScreen = () => {
 
   return (
     <View className="bg-surface-page1 flex-1 px-6" style={{ paddingTop: top }}>
-      <View className="flex-row mb-2 items-center gap-x-4">
-        <DrawerMenuButton />
-
-        <View className="flex-col flex-1 gap-y-1">
-          <Text className="text-sm text-ink-3 font-medium">
-            Bienvenido de nuevo
-          </Text>
-          <Text className="font-oswald-bold text-2xl">Universo Z</Text>
-        </View>
-
-        <View className="size-12 rounded-xl bg-primary justify-center">
-          <Text className="text-center text-white text-2xl font-bold">G</Text>
-        </View>
-      </View>
+      <CharacterHeader />
       <FlatList
         data={dragonBallCharacters}
         showsVerticalScrollIndicator={false}
@@ -48,15 +35,7 @@ const CharactersScreen = () => {
         )}
         ListFooterComponent={() => {
           if (isFetchingNextPage) {
-            // return <ActivityIndicator className="my-4" color="#FF6A1A" />;
-            return (
-              <BaseButton
-                disabled
-                text="Cargando..."
-                className="my-4"
-                color="secondary"
-              />
-            );
+            return <ActivityIndicator className="my-4" color="#FF6A1A" />;
           }
           if (!hasNextPage) return null;
           return (

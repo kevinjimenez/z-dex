@@ -24,14 +24,14 @@ const BaseBadge = ({
   return (
     <View
       className={twMerge(
-        'bg-badge px-1.5 py-0.5 rounded-lg flex-row gap-x-1',
+        'bg-gray-200 px-2 py-1 rounded-lg flex-row gap-x-1',
         customClassBadge,
       )}
     >
       {prefixIcon && <Lucide name={prefixIcon} size={size} className={color} />}
       <Text
         className={twMerge(
-          'text-xs font-medium text-gray-600',
+          'text-xs font-dmsans-medium text-gray-700',
           customClassText,
         )}
       >

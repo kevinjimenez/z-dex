@@ -1,4 +1,4 @@
-import DrawerMenuButton from '@/shared/components/DrawerMenuButton';
+import DrawerMenuButton from '@/shared/components/CustomDrawerMenuButton';
 import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
