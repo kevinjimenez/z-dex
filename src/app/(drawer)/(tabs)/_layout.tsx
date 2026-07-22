@@ -1,6 +1,7 @@
 import Lucide from '@react-native-vector-icons/lucide';
 import { Tabs } from 'expo-router';
 import { getFocusedRouteNameFromRoute } from 'expo-router/build/react-navigation';
+import { Platform } from 'react-native';
 
 const TabsLayout = () => {
   return (
@@ -22,11 +23,21 @@ const TabsLayout = () => {
     >
       <Tabs.Screen
         name="(stack)"
-        options={{
-          title: 'Personajes',
-          tabBarIcon: ({ color }) => (
-            <Lucide size={28} name="drama" color={color} />
-          ),
+        options={({ route }) => {
+          const focusedRouteName =
+            getFocusedRouteNameFromRoute(route) ?? 'characters/index';
+          // en iOS el modal ya tapa el tab bar solo; esto es únicamente
+          // para Android, donde el modal es solo una animación y no lo oculta
+          const isDetail =
+            Platform.OS === 'android' && focusedRouteName.startsWith('detail');
+
+          return {
+            title: 'Personajes',
+            tabBarIcon: ({ color }) => (
+              <Lucide size={28} name="drama" color={color} />
+            ),
+            tabBarStyle: isDetail ? { display: 'none' } : undefined,
+          };
         }}
       />
 
