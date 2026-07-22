@@ -1,5 +1,4 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { View } from 'react-native';
 import CharacterAvatar from './CharacterAvatar';
 import CharacterTitle from './CharacterTitle';
 
@@ -11,7 +10,7 @@ interface Props {
 
 const CharacterPoster = ({ image, race, name }: Props) => {
   return (
-    <View className="">
+    <>
       <CharacterAvatar
         customClassContainer="rounded-lg bg-white w-full justify-center items-center"
         uri={image}
@@ -74,7 +73,35 @@ const CharacterPoster = ({ image, race, name }: Props) => {
           width: 128,
         }}
       />
-    </View>
+
+      {/*Esquina superior derecha hacia el centro*/}
+      {/*<LinearGradient
+        colors={['rgba(255,106,26,0.35)', 'rgba(255,106,26,0)']}
+        start={{ x: 1, y: 0 }}
+        end={{ x: 0.1, y: 0.1 }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+        }}
+      />*/}
+
+      {/*Esquina superior izquierda hacia el centro*/}
+      {/*<LinearGradient
+        colors={['rgba(255,106,26,0.35)', 'rgba(255,106,26,0)']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.2, y: 0.2 }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+        }}
+      />*/}
+    </>
   );
 };
 
