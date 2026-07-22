@@ -3,8 +3,8 @@ import CharacterCardSkeleton from '@/features/characters/components/CharacterCar
 import CharacterList from '@/features/characters/components/CharacterList';
 import CharacterHeader from '@/features/characters/components/CharcaterHeader';
 import { useCharacters } from '@/features/characters/hooks/useCharacters';
-import ListSkeleton from '@/shared/components/ListSkeleton';
-import ScreenContainer from '@/shared/components/ScreenContainer';
+import ListSkeleton from '@/shared/components/common/ListSkeleton';
+import ScreenContainer from '@/shared/components/common/ScreenContainer';
 import { router } from 'expo-router';
 
 const CharactersScreen = () => {

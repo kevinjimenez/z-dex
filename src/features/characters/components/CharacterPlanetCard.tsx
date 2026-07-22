@@ -1,5 +1,5 @@
-import LabelIcon from '@/shared/components/LabelIcon';
-import BaseBadge from '@/shared/ui/BaseBadge';
+import LabelIcon from '@/shared/components/common/LabelIcon';
+import BaseBadge from '@/shared/components/ui/BaseBadge';
 import { Text, View } from 'react-native';
 import CharacterPlanetPoster from './CharacterPlanetPoster';
 

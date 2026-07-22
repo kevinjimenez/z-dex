@@ -1,7 +1,7 @@
 import { CharacterResponse } from '@/core/interfaces/responses/character-response.interface';
-import LabelIcon from '@/shared/components/LabelIcon';
-import BaseBadge from '@/shared/ui/BaseBadge';
-import BaseButtonIcon from '@/shared/ui/BaseButtonIcon';
+import LabelIcon from '@/shared/components/common/LabelIcon';
+import BaseBadge from '@/shared/components/ui/BaseBadge';
+import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 import * as Haptics from 'expo-haptics';
 import { useState } from 'react';
 import { Pressable, PressableProps, Text, View } from 'react-native';

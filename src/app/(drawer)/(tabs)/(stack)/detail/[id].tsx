@@ -2,7 +2,7 @@ import CharacterHero from '@/features/characters/components/CharacterHero';
 import CharacterInfoSection from '@/features/characters/components/CharacterInfoSection';
 import CharacterTransformations from '@/features/characters/components/CharacterTransformations';
 import { useCharacter } from '@/features/characters/hooks/useCharacters';
-import BaseButton from '@/shared/ui/BaseButton';
+import BaseButton from '@/shared/components/ui/BaseButton';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { StackActions } from 'expo-router/build/react-navigation';
 import { ScrollView, Text, View } from 'react-native';

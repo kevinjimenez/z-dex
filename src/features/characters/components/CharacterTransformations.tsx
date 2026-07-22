@@ -1,5 +1,5 @@
 import { Transformation } from '@/core/interfaces/responses/character-response.interface';
-import BaseBadge from '@/shared/ui/BaseBadge';
+import BaseBadge from '@/shared/components/ui/BaseBadge';
 import { FlatList, Text, View } from 'react-native';
 import CharacterTransformationCard from './CharacterTransformationCard';
 

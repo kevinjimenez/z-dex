@@ -1,4 +1,4 @@
-import BaseButton from '@/shared/ui/BaseButton';
+import BaseButton from '@/shared/components/ui/BaseButton';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,

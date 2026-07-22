@@ -1,5 +1,5 @@
-import Avartar from '@/shared/components/Avatar';
-import DrawerMenuButton from '@/shared/components/CustomDrawerMenuButton';
+import Avartar from '@/shared/components/common/Avatar';
+import DrawerMenuButton from '@/shared/components/common/CustomDrawerMenuButton';
 import { Text, View } from 'react-native';
 
 const CharacterHeader = () => {

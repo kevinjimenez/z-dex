@@ -1,5 +1,5 @@
 import { CharacterResponse } from '@/core/interfaces/responses/character-response.interface';
-import BaseButton from '@/shared/ui/BaseButton';
+import BaseButton from '@/shared/components/ui/BaseButton';
 import { ActivityIndicator, FlatList, FlatListProps, View } from 'react-native';
 
 interface Props extends FlatListProps<CharacterResponse> {

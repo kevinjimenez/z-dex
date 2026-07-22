@@ -1,4 +1,4 @@
-import BaseSkeleton from '@/shared/ui/BaseSkeleton';
+import BaseSkeleton from '@/shared/components/ui/BaseSkeleton';
 import { View } from 'react-native';
 
 const CharacterCardSkeleton = () => {

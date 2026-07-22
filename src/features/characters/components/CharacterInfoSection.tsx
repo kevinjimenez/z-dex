@@ -1,5 +1,5 @@
 import { OriginPlanet } from '@/core/interfaces/responses/character-response.interface';
-import StatCard from '@/shared/components/StatCard';
+import StatCard from '@/shared/components/common/StatCard';
 import { View } from 'react-native';
 import CharacterPlanetCard from './CharacterPlanetCard';
 

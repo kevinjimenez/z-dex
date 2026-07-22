@@ -1,4 +1,4 @@
-import BaseButtonIcon from '@/shared/ui/BaseButtonIcon';
+import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 import { View } from 'react-native';
 import CharacterPoster from './CharacterPoster';
 

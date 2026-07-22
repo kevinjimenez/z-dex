@@ -1,5 +1,5 @@
-import CustomDrawer from '@/shared/components/CustomDrawer';
-import CustomDrawerLabel from '@/shared/components/CustomDrawerLabel';
+import CustomDrawer from '@/shared/components/common/CustomDrawer';
+import CustomDrawerLabel from '@/shared/components/common/CustomDrawerLabel';
 import Lucide from '@react-native-vector-icons/lucide';
 
 import { Drawer } from 'expo-router/drawer';
