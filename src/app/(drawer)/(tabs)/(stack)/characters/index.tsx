@@ -1,9 +1,8 @@
 import CharacterCard from '@/features/characters/components/CharacterCard';
-import CharacterCardSkeleton from '@/features/characters/components/CharacterCardSkeleton';
-import CharacterList from '@/features/characters/components/CharacterList';
 import CharacterHeader from '@/features/characters/components/CharacterHeader';
+import CharacterList from '@/features/characters/components/CharacterList';
+import CharacterListSkeleton from '@/features/characters/components/CharacterListSkeleton';
 import { useCharacters } from '@/features/characters/hooks/useCharacters';
-import ListSkeleton from '@/shared/components/common/ListSkeleton';
 import ScreenContainer from '@/shared/components/common/ScreenContainer';
 import { router } from 'expo-router';
 
@@ -24,10 +23,7 @@ const CharactersScreen = () => {
     <ScreenContainer>
       <CharacterHeader />
       {isLoading ? (
-        <ListSkeleton
-          length={10}
-          renderItem={() => <CharacterCardSkeleton />}
-        />
+        <CharacterListSkeleton />
       ) : (
         <CharacterList
           hasNextPage={hasNextPage}
