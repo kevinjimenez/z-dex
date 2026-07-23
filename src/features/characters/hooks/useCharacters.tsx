@@ -34,7 +34,10 @@ export const useCharacter = (id: number) => {
     staleTime: 1000 * 60 * 60 * 24,
   });
 
+  const dragonBallCharacter = character.data;
+
   return {
-    dragonBallCharacter: character,
+    dragonBallCharacter,
+    isLoading: character.isLoading,
   };
 };
