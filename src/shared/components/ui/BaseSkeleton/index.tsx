@@ -15,11 +15,11 @@ const BaseSkeleton = ({
 }: BaseSkeletonProps) => {
   const opacity = useSharedValue(0.5);
 
+  const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
+
   useEffect(() => {
     opacity.value = withRepeat(withTiming(1, { duration: 800 }), -1, true);
   }, []);
-
-  const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
 
   return (
     <Animated.View

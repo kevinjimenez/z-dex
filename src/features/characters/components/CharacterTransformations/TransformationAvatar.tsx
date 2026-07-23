@@ -20,9 +20,6 @@ const TransformationAvatar = ({
       )}
     >
       <Image
-        // contentFit="cover"
-        // contentPosition="top"
-        // transition={1000}
         className={customClassImage}
         source={{ uri: image }}
         style={{ width, height }}

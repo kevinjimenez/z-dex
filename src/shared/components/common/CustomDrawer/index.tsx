@@ -9,6 +9,7 @@ import DrawerHeader from './DrawerHeader';
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
   const { navigation } = props;
+
   const closeDrawer = () => {
     navigation.closeDrawer();
   };

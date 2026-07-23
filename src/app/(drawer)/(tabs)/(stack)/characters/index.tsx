@@ -15,6 +15,7 @@ const CharactersScreen = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useCharacters();
+
   const goToDetail = (id: number) => {
     router.push(`/detail/${id}`);
   };
