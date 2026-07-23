@@ -1,6 +1,5 @@
 import { Image } from 'expo-image';
-import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 import { CharacterAvatarProps } from './interfaces/character-avatar.interface';
 
