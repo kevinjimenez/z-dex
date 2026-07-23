@@ -7,6 +7,7 @@ const PosterTitle = ({ race, name }: PosterTitleProps) => {
       <Text className="text-primary uppercase font-dmsans-bold text-xs">
         {race}
       </Text>
+
       <Text className="font-oswald-bold text-5xl" style={{ lineHeight: 56 }}>
         {name}
       </Text>
