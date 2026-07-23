@@ -37,7 +37,8 @@ const TabsLayout = () => {
             tabBarIcon: ({ color }) => (
               <Lucide size={28} name="drama" color={color} />
             ),
-            tabBarStyle: isDetail ? { display: 'none' } : undefined,
+            // tabBarStyle: isDetail ? { display: 'none' } : undefined,
+            ...(isDetail && { tabBarStyle: { display: 'none' } }),
           };
         }}
       />
