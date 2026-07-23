@@ -1,0 +1,47 @@
+import Lucide from '@react-native-vector-icons/lucide';
+import { Text, View } from 'react-native';
+import { twMerge } from 'tailwind-merge';
+import { StatCardProps } from './interfaces/stat-card.interface';
+
+const StatCard = ({
+  title,
+  text,
+  suffixIcon,
+  size = 16,
+  classContainer,
+  classValueContainer,
+  classText,
+  classTitle,
+  color,
+}: StatCardProps) => {
+  return (
+    <View
+      className={twMerge(
+        'flex-1 bg-white rounded-xl border border-gray-200 p-4',
+        classContainer,
+      )}
+    >
+      {suffixIcon && <Lucide name={suffixIcon} size={size} className={color} />}
+      <View className={twMerge('flex-col flex-1', classValueContainer)}>
+        <Text
+          className={twMerge(
+            'uppercase text-xs font-dmsans-regular',
+            classTitle,
+          )}
+        >
+          {title}
+        </Text>
+        <Text
+          className={twMerge(
+            'text-primary text-2xl font-oswald-bold',
+            classText,
+          )}
+        >
+          {text}
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+export default StatCard;

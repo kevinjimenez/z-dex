@@ -110,6 +110,21 @@ colors={['rgba(251,243,233,0)', 'rgba(251,243,233,0.6)', '#FBF3E9']}
 
 Si necesitás un degradado **radial** (que irradie desde un punto, no en línea recta), `expo-linear-gradient` no lo soporta — hace falta `react-native-svg` con su `<RadialGradient>`.
 
+### Organización de componentes
+
+Cuando un componente tiene "átomos" internos que solo él usa, se puede agrupar en una carpeta con `index.tsx`:
+
+```
+CharacterPoster/
+  index.tsx          (el componente, se importa como './CharacterPoster')
+  CharacterTitle.tsx (átomo privado, solo lo usa CharacterPoster)
+```
+
+**Usarlo selectivamente, no para todo** — el criterio es el mismo que para decidir si algo va en `shared/` o en `features/`: ¿es privado de un solo componente, o se reusa en más de un lugar?
+
+- **Sí conviene la carpeta**: cuando el/los átomo(s) son exclusivamente privados de ese componente y no se van a reusar en ningún otro lado.
+- **No conviene**: para piezas que ya se comparten entre varios padres (ej. `CharacterAvatar`, que usan tanto `CharacterCard` como `CharacterPoster`; o `StatCard`/`ListSkeleton`, genéricos en `shared/`). Meterlas dentro de la carpeta de un componente específico sugiere falsamente que son privadas de ese componente.
+
 ### Other setup steps
 
 - To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)

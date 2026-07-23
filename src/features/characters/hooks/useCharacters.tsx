@@ -14,8 +14,13 @@ export const useCharacters = () => {
     staleTime: 1000 * 60 * 60 * 24,
   });
 
+  const dragonBallCharacters = characters.data?.pages.flatMap(
+    (page) => page.items,
+  );
+
   return {
-    dragonBallCharacters: characters.data?.pages.flatMap((page) => page.items),
+    dragonBallCharacters,
+    isLoading: characters.isLoading,
     fetchNextPage: characters.fetchNextPage,
     hasNextPage: characters.hasNextPage,
     isFetchingNextPage: characters.isFetchingNextPage,
@@ -29,7 +34,10 @@ export const useCharacter = (id: number) => {
     staleTime: 1000 * 60 * 60 * 24,
   });
 
+  const dragonBallCharacter = character.data;
+
   return {
-    dragonBallCharacter: character,
+    dragonBallCharacter,
+    isLoading: character.isLoading,
   };
 };
