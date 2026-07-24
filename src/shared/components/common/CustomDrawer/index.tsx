@@ -52,6 +52,12 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
           label="Planetas"
           onNavigate={closeDrawer}
         />
+        <DrawerTabItem
+          path="/favorites"
+          icon="heart"
+          label="Favoritos"
+          onNavigate={closeDrawer}
+        />
         <DrawerItemList {...props} />
 
         <View className="flex-col gap-y-1 mt-8">
