@@ -1,11 +1,11 @@
 import PlanetCard from '@/features/planets/components/PlanetCard';
 import PlanetHeader from '@/features/planets/components/PlanetHeader';
 import PlanetList from '@/features/planets/components/PlanetList';
+import PlanetPaginationLoader from '@/features/planets/components/PlanetPaginationLoader';
 import { usePlanets } from '@/features/planets/hooks/usePlanets';
 import LoadingState from '@/shared/components/common/LoadingState';
 import ScreenContainer from '@/shared/components/common/ScreenContainer';
-import { ActivityIndicator, View } from 'react-native';
-import Animated, { SlideInDown, SlideOutDown } from 'react-native-reanimated';
+import { View } from 'react-native';
 
 const PlanetsScreen = () => {
   const { dragonBallPlanets, fetchNextPage, isLoading, isFetchingNextPage } =
@@ -32,7 +32,9 @@ const PlanetsScreen = () => {
             )}
           />
 
-          {isFetchingNextPage && (
+          <PlanetPaginationLoader />
+
+          {/*{isFetchingNextPage && (
             <Animated.View
               entering={SlideInDown.duration(250)}
               exiting={SlideOutDown.duration(200)}
@@ -42,7 +44,7 @@ const PlanetsScreen = () => {
                 <ActivityIndicator className="text-ink-3" size={30} />
               </View>
             </Animated.View>
-          )}
+          )}*/}
         </View>
       )}
     </ScreenContainer>
