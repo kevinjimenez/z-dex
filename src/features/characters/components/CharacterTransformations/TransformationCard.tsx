@@ -1,10 +1,14 @@
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { TransformationCardProps } from './interfaces/transformation-card.interface';
 import TransformationAvatar from './TransformationAvatar';
+import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 
-const TransformationCard = ({ transformation }: TransformationCardProps) => {
+const TransformationCard = ({
+  transformation,
+  onPress,
+}: TransformationCardProps) => {
   return (
-    <View className="flex-col gap-y-2">
+    <Pressable className="relative flex-col gap-y-2" onPress={onPress}>
       <TransformationAvatar
         contentFit="cover"
         contentPosition="top"
@@ -12,12 +16,19 @@ const TransformationCard = ({ transformation }: TransformationCardProps) => {
         customClassImage="rounded-xl"
         image={transformation.image}
       />
-      <View className="flex-col w-28">
+      <View className="flex-col w-[7.15rem]">
         <Text className="font-dmsans-bold text-xs" numberOfLines={1}>
           {transformation.name}
         </Text>
       </View>
-    </View>
+
+      <BaseButtonIcon
+        size={10}
+        icon="expand"
+        color="text-primary"
+        className="absolute bg-white/80 top-2 right-2 size-5 items-center justify-center rounded-full"
+      />
+    </Pressable>
   );
 };
 
