@@ -25,7 +25,7 @@ const BaseModal = ({
       <Pressable className="flex-1 bg-black/60 justify-end" onPress={onClose}>
         <Pressable
           className={twMerge(
-            'bg-white rounded-t-3xl p-4 items-center gap-y-3',
+            'bg-white rounded-t-3xl overflow-hidden items-center gap-y-3',
             SIZE_CLASSES[size],
             customClassContent,
           )}
