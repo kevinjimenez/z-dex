@@ -8,6 +8,7 @@ const CharacterList = ({
   hasNextPage,
   isFetchingNextPage,
   renderItem,
+  ...rest
 }: CharacterListProps) => {
   return (
     <FlatList
@@ -30,6 +31,7 @@ const CharacterList = ({
           />
         );
       }}
+      {...rest}
     />
   );
 };

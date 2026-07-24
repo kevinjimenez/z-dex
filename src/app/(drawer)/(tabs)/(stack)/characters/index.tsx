@@ -30,6 +30,7 @@ const CharactersScreen = () => {
           isFetchingNextPage={isFetchingNextPage}
           fetchNextPage={fetchNextPage}
           data={dragonBallCharacters}
+          contentContainerClassName="pb-5"
           renderItem={({ item }) => (
             <CharacterCard
               key={String(item.id)}
