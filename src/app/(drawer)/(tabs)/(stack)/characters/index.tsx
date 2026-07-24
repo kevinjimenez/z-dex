@@ -4,7 +4,6 @@ import CharacterList from '@/features/characters/components/CharacterList';
 import CharacterListSkeleton from '@/features/characters/components/CharacterListSkeleton';
 import { useCharacters } from '@/features/characters/hooks/useCharacters';
 import ScreenContainer from '@/shared/components/common/ScreenContainer';
-import { router } from 'expo-router';
 
 const CharactersScreen = () => {
   const {
@@ -14,10 +13,6 @@ const CharactersScreen = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useCharacters();
-
-  const goToDetail = (id: number) => {
-    router.push(`/detail/${id}`);
-  };
 
   return (
     <ScreenContainer>
@@ -32,11 +27,7 @@ const CharactersScreen = () => {
           data={dragonBallCharacters}
           contentContainerClassName="pb-5"
           renderItem={({ item }) => (
-            <CharacterCard
-              key={String(item.id)}
-              item={item}
-              onPress={() => goToDetail(item.id)}
-            />
+            <CharacterCard key={String(item.id)} item={item} />
           )}
         />
       )}
