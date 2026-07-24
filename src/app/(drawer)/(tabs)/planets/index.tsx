@@ -8,8 +8,7 @@ import ScreenContainer from '@/shared/components/common/ScreenContainer';
 import { View } from 'react-native';
 
 const PlanetsScreen = () => {
-  const { dragonBallPlanets, fetchNextPage, isLoading, isFetchingNextPage } =
-    usePlanets();
+  const { dragonBallPlanets, fetchNextPage, isLoading } = usePlanets();
 
   return (
     <ScreenContainer>
