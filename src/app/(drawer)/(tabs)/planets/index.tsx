@@ -46,7 +46,7 @@ const PlanetsScreen = () => {
                   style={{ width: '100%', height: 140 }}
                 />
                 <View className="flex-col px-5 py-4 gap-y-4">
-                  <View className="flex-row flex-1 justify-between items-center">
+                  <View className="flex-row justify-between items-center">
                     <LabelIcon
                       text={item.name}
                       prefixIcon="earth"
