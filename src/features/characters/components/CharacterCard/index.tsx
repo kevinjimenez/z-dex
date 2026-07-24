@@ -6,9 +6,14 @@ import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import CharacterAvatar from '../CharacterAvatar';
 import { CharacterCardProps } from './interfaces/character-card.interface';
+import { router } from 'expo-router';
 
-const CharacterCard = ({ item, onPress, ...rest }: CharacterCardProps) => {
+const CharacterCard = ({ item, ...rest }: CharacterCardProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const goToDetail = (id: number) => {
+    router.push(`/detail/${id}`);
+  };
 
   const handleFavoriteCharacter = () => {
     Haptics.selectionAsync();
@@ -24,7 +29,7 @@ const CharacterCard = ({ item, onPress, ...rest }: CharacterCardProps) => {
     <Pressable
       className="rounded-xl border border-slate-200 flex-row gap-x-5 p-3 justify-center items-center bg-white elevation-sm"
       {...rest}
-      onPress={onPress}
+      onPress={() => goToDetail(item.id)}
     >
       <CharacterAvatar
         uri={item.image}
