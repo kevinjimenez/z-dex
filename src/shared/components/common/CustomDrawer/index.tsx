@@ -23,7 +23,7 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
     >
       <DrawerHeader onPress={closeDrawer} />
 
-      <View className="flex-1 mt-6 mb-4">
+      <View className="flex-1 mt-6">
         <Text
           className="text-ink-2 uppercase text-sm pb-2"
           style={{ letterSpacing: 0.5 }}
@@ -42,8 +42,8 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
         */}
         <DrawerTabItem
           path="/characters"
-          icon="home"
-          label="Inicio"
+          icon="drama"
+          label="Personajes"
           onNavigate={closeDrawer}
         />
         <DrawerTabItem
@@ -53,15 +53,34 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
           onNavigate={closeDrawer}
         />
         <DrawerItemList {...props} />
-      </View>
 
-      <View className="flex-1 mt-6 mb-4">
-        <Text
-          className="text-ink-2 uppercase text-sm pb-2"
-          style={{ letterSpacing: 0.5 }}
-        >
-          Apariencia
-        </Text>
+        <View className="flex-col gap-y-1 mt-8">
+          <View className="flex-1">
+            <Text
+              className="text-ink-2 uppercase text-sm pb-2"
+              style={{ letterSpacing: 0.5 }}
+            >
+              Apariencia
+            </Text>
+          </View>
+
+          <View className="flex-row gap-x-3">
+            <BaseButton
+              text="Claro"
+              prefixIcon="sun"
+              variant="contained"
+              color="primary"
+              className="flex-1 w-auto"
+            />
+            <BaseButton
+              text="Oscuro"
+              prefixIcon="moon"
+              variant="outline"
+              color="secondary"
+              className="flex-1 w-auto"
+            />
+          </View>
+        </View>
       </View>
 
       <BaseButton text="Cerrar sesión" prefixIcon="log-out" variant="soft" />
