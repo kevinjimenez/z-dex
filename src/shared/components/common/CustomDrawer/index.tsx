@@ -6,6 +6,7 @@ import {
 } from 'expo-router/drawer';
 import { Text, View } from 'react-native';
 import DrawerHeader from './DrawerHeader';
+import DrawerTabItem from './DrawerTabItem';
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
   const { navigation } = props;
@@ -30,7 +31,37 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
           Navegación
         </Text>
         {/* Draweritems */}
+        {/*
+          DrawerItemList solo renderiza las rutas registradas como Drawer.Screen
+          en (drawer)/_layout.tsx (Perfil, Configuraciones — "(tabs)" está oculta
+          ahí con drawerItemStyle: display none). Para enlazar a una tab específica
+          (que vive dentro de "(tabs)" y no es un Drawer.Screen propio), usamos
+          DrawerTabItem con el path público de esa ruta ("/characters", "/planets"),
+          no el nombre interno del navigator. Agrega uno nuevo por cada tab que
+          quieras poder abrir directo desde el drawer.
+        */}
+        <DrawerTabItem
+          path="/characters"
+          icon="home"
+          label="Inicio"
+          onNavigate={closeDrawer}
+        />
+        <DrawerTabItem
+          path="/planets"
+          icon="earth"
+          label="Planetas"
+          onNavigate={closeDrawer}
+        />
         <DrawerItemList {...props} />
+      </View>
+
+      <View className="flex-1 mt-6 mb-4">
+        <Text
+          className="text-ink-2 uppercase text-sm pb-2"
+          style={{ letterSpacing: 0.5 }}
+        >
+          Apariencia
+        </Text>
       </View>
 
       <BaseButton text="Cerrar sesión" prefixIcon="log-out" variant="soft" />

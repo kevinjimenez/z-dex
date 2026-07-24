@@ -37,22 +37,16 @@ const DrawerLayout = () => {
       //   };
       // }}
     >
+      {/*
+        "(tabs)" ya existe como ruta por convención de carpetas (src/app/(drawer)/(tabs)),
+        no porque la declaremos aquí. La declaramos solo para ocultarla de DrawerItemList
+        (display: 'none'): "Inicio" ahora se navega con un <DrawerTabItem path="/characters" />
+        en CustomDrawer/index.tsx, vía router.navigate — no por este Drawer.Screen.
+      */}
       <Drawer.Screen
         name="(tabs)"
         options={{
-          // headerShown: false,
-          // headerShadowVisible: false,
-          drawerLabel: ({ color }) => (
-            <CustomDrawerLabel
-              color={color}
-              icon="chevron-right"
-              label="Inicio"
-            />
-          ),
-          title: 'Personajes',
-          drawerIcon: ({ color }) => (
-            <Lucide name="home" size={20} color={color} />
-          ),
+          drawerItemStyle: { display: 'none' },
         }}
       />
 
