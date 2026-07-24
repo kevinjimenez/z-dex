@@ -1,12 +1,19 @@
 import { Modal, Pressable } from 'react-native';
 import { twMerge } from 'tailwind-merge';
-import { BaseModalProps } from './base-modal.interface';
+import { BaseModalProps, BaseModalSize } from './base-modal.interface';
+
+const SIZE_CLASSES: Record<BaseModalSize, string> = {
+  half: 'h-1/2',
+  twoThirds: 'h-2/3',
+  full: 'h-full',
+};
 
 const BaseModal = ({
   visible,
   onClose,
   children,
   customClassContent,
+  size = 'half',
 }: BaseModalProps) => {
   return (
     <Modal
@@ -18,7 +25,8 @@ const BaseModal = ({
       <Pressable className="flex-1 bg-black/60 justify-end" onPress={onClose}>
         <Pressable
           className={twMerge(
-            'bg-white rounded-t-3xl p-4 items-center gap-y-3 h-1/2',
+            'bg-white rounded-t-3xl p-4 items-center gap-y-3',
+            SIZE_CLASSES[size],
             customClassContent,
           )}
         >
