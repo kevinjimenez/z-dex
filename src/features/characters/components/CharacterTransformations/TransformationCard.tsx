@@ -1,10 +1,13 @@
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { TransformationCardProps } from './interfaces/transformation-card.interface';
 import TransformationAvatar from './TransformationAvatar';
 
-const TransformationCard = ({ transformation }: TransformationCardProps) => {
+const TransformationCard = ({
+  transformation,
+  onPress,
+}: TransformationCardProps) => {
   return (
-    <View className="flex-col gap-y-2">
+    <Pressable className="flex-col gap-y-2" onPress={onPress}>
       <TransformationAvatar
         contentFit="cover"
         contentPosition="top"
@@ -17,7 +20,7 @@ const TransformationCard = ({ transformation }: TransformationCardProps) => {
           {transformation.name}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
