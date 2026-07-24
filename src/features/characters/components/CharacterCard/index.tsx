@@ -1,28 +1,32 @@
+import { CharacterResponse } from '@/core/interfaces/responses/character-response.interface';
+import { useFavoriteStore } from '@/features/favorites/store/useFavorite';
 import LabelIcon from '@/shared/components/common/LabelIcon';
 import BaseBadge from '@/shared/components/ui/BaseBadge';
 import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 import * as Haptics from 'expo-haptics';
-import { useState } from 'react';
+import { router } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 import CharacterAvatar from '../CharacterAvatar';
 import { CharacterCardProps } from './interfaces/character-card.interface';
-import { router } from 'expo-router';
 
 const CharacterCard = ({ item, ...rest }: CharacterCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { addFavorite, removeFavorite } = useFavoriteStore();
+  const isFavorite = useFavoriteStore((state) => state.isFavorite(item.id));
 
   const goToDetail = (id: number) => {
     router.push(`/detail/${id}`);
   };
 
-  const handleFavoriteCharacter = () => {
+  const handleFavoriteCharacter = async (item: CharacterResponse) => {
     Haptics.selectionAsync();
-    setIsFavorite(() => true);
+    // setIsFavorite(() => true);
+    addFavorite(item);
   };
 
-  const handleNotFavoriteCharacter = () => {
+  const handleNotFavoriteCharacter = (id: number) => {
     Haptics.selectionAsync();
-    setIsFavorite(() => false);
+    // setIsFavorite(() => false);
+    removeFavorite(id);
   };
 
   return (
@@ -50,8 +54,8 @@ const CharacterCard = ({ item, ...rest }: CharacterCardProps) => {
         </View>
       </View>
       <BaseButtonIcon
-        onPress={handleFavoriteCharacter}
-        onLongPress={handleNotFavoriteCharacter}
+        onPress={() => handleFavoriteCharacter(item)}
+        onLongPress={() => handleNotFavoriteCharacter(item.id)}
         icon="heart"
         color={isFavorite ? 'text-red-500' : 'text-secondary'}
       />

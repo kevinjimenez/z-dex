@@ -3,6 +3,7 @@ import CharacterHero from '@/features/characters/components/CharacterHero';
 import CharacterInfoSection from '@/features/characters/components/CharacterInfoSection';
 import CharacterTransformations from '@/features/characters/components/CharacterTransformations';
 import { useCharacterById } from '@/features/characters/hooks/useCharacters';
+import { useFavoriteStore } from '@/features/favorites/store/useFavorite';
 import BaseButton from '@/shared/components/ui/BaseButton';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { StackActions } from 'expo-router/build/react-navigation';
@@ -14,13 +15,15 @@ const ComponentName = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { dragonBallCharacter, transformations, isLoading } =
     useCharacterById(+id);
+  const { toggleFavorite } = useFavoriteStore();
+  const isFavorite = useFavoriteStore((state) => state.isFavorite(+id));
   const navigation = useNavigation();
 
   const goToBack = () => {
     navigation.dispatch(StackActions.pop());
   };
 
-  const toggleFavorite = () => {};
+  // const toggleFavorite = () => {};
 
   return (
     <ScrollView
@@ -36,8 +39,9 @@ const ComponentName = () => {
             image={dragonBallCharacter.image}
             race={dragonBallCharacter.race}
             name={dragonBallCharacter.name}
+            isFavorite={isFavorite}
             onBack={goToBack}
-            onToggleFavorite={toggleFavorite}
+            onToggleFavorite={() => toggleFavorite(dragonBallCharacter)}
           />
 
           <CharacterInfoSection

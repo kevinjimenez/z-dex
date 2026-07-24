@@ -5,6 +5,8 @@ import { Slot, SplashScreen } from 'expo-router';
 import { cssInterop } from 'nativewind';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '../global.css';
+import { useEffect } from 'react';
+import { useFavoriteStore } from '@/features/favorites/store/useFavorite';
 // permite usar className (NativeWind) en Lucide, mapeándolo a su prop style
 cssInterop(Lucide, { className: 'style' });
 
@@ -13,6 +15,10 @@ SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
   const fontsLoaded = useAppFonts();
+
+  useEffect(() => {
+    useFavoriteStore.getState().loadFavorites();
+  }, []);
 
   if (!fontsLoaded) return null;
 
