@@ -2,17 +2,25 @@ import { LinearGradient } from 'expo-linear-gradient';
 import CharacterAvatar from '../CharacterAvatar';
 import { CharacterPosterProps } from './interfaces/character-poster.interface';
 import PosterTitle from './PosterTitle';
+import { useWindowDimensions } from 'react-native';
 
 const CharacterPoster = ({ image, race, name }: CharacterPosterProps) => {
+  const { width } = useWindowDimensions();
+  const avatarSize = width * 0.9;
+
   return (
     <>
       <CharacterAvatar
+        style={{
+          width: avatarSize,
+          height: avatarSize,
+        }}
         customClassContainer="rounded-lg bg-white w-full justify-center items-center"
         uri={image}
         transition={1000}
         contentFit="contain"
         width="100%"
-        height={360}
+        height="100%"
       />
 
       <PosterTitle race={race} name={name} />
