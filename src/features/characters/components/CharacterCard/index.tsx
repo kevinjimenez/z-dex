@@ -54,6 +54,7 @@ const CharacterCard = ({ item, ...rest }: CharacterCardProps) => {
         </View>
       </View>
       <BaseButtonIcon
+        className="pr-2"
         onPress={() => handleFavoriteCharacter(item)}
         onLongPress={() => handleNotFavoriteCharacter(item.id)}
         icon="heart"

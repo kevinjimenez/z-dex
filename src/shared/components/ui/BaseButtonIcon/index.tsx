@@ -11,12 +11,7 @@ const BaseButtonIcon = ({
   ...rest
 }: BaseButtonIconProps) => {
   return (
-    <Pressable
-      className="pr-2"
-      onPress={onPress}
-      onLongPress={onLongPress}
-      {...rest}
-    >
+    <Pressable onPress={onPress} onLongPress={onLongPress} {...rest}>
       <Lucide name={icon} size={size} className={color} />
     </Pressable>
   );
