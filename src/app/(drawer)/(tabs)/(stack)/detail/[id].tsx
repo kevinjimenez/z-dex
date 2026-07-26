@@ -66,9 +66,10 @@ const ComponentName = () => {
           </View>
 
           <BaseButton
-            text="AGREGAR A FAVORITOS"
+            text={isFavorite ? 'EN FAVORITOS' : 'AGREGAR A FAVORITOS'}
             prefixIcon="heart"
             className="my-8"
+            onPress={() => toggleFavorite(dragonBallCharacter)}
           />
         </>
       )}
