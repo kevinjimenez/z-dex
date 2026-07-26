@@ -22,7 +22,10 @@ const BaseModal = ({
       animationType="slide"
       onRequestClose={onClose}
     >
-      <Pressable className="flex-1 bg-black/60 justify-end" onPress={onClose}>
+      <Pressable
+        className={`flex-1 ${size !== 'full' ? 'bg-black/60' : ''} justify-end`}
+        onPress={onClose}
+      >
         <Pressable
           className={twMerge(
             'bg-white rounded-t-3xl overflow-hidden items-center gap-y-3',

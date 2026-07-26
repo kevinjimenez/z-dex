@@ -76,18 +76,25 @@ const FavoritesScreen = () => {
 
       <BaseModal size="full" visible={!!selected}>
         {selected && (
-          <View style={{ paddingTop: top, width: '100%' }}>
+          <View
+            style={{
+              paddingTop: top,
+              width: '100%',
+              backgroundColor: '#FAF7F1',
+              flex: 1,
+            }}
+          >
             <View style={{ position: 'relative' }}>
               <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                 <View
                   style={{
                     width: avatarSize,
                     height: avatarSize,
-                    // borderRadius: avatarSize / 2,
-                    borderWidth: 4,
-                    borderColor: '#1a1a1a',
-                    // overflow: 'hidden',
-                    // backgroundColor: '#5c1a1a',
+                    borderRadius: avatarSize / 2,
+                    borderWidth: 2,
+                    borderColor: '#FF9477',
+                    overflow: 'hidden',
+                    backgroundColor: '#FFA23E',
                   }}
                 >
                   <Image
@@ -96,14 +103,6 @@ const FavoritesScreen = () => {
                     style={{ width: '100%', height: '100%' }}
                   />
                 </View>
-                {/*<Image
-                  source={{
-                    uri: selected.image,
-                  }}
-                  contentFit="cover"
-                  contentPosition="top"
-                  style={{ width: width * 0.3, height: height * 0.31 }}
-                />*/}
                 <Text>{selected.name}</Text>
               </View>
 
