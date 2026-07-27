@@ -1,5 +1,6 @@
 import { useAppFonts } from '@/hooks/useAppFonts';
 import Lucide from '@react-native-vector-icons/lucide';
+import Ionicons from '@react-native-vector-icons/ionicons';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Slot, SplashScreen } from 'expo-router';
 import { cssInterop } from 'nativewind';
@@ -8,6 +9,7 @@ import '../global.css';
 import { useEffect } from 'react';
 import { useFavoriteStore } from '@/features/favorites/store/useFavorite';
 // permite usar className (NativeWind) en Lucide, mapeándolo a su prop style
+cssInterop(Ionicons, { className: 'style' });
 cssInterop(Lucide, { className: 'style' });
 
 const queryClient = new QueryClient();

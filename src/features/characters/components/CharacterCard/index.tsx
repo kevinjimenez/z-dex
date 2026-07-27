@@ -57,6 +57,8 @@ const CharacterCard = ({ item, ...rest }: CharacterCardProps) => {
           // onPress={() => handleFavoriteCharacter(item)}
           // onLongPress={() => handleNotFavoriteCharacter(item.id)}
           icon="heart"
+          filledIcon="heart"
+          filled
           color="text-red-500"
         />
       )}
