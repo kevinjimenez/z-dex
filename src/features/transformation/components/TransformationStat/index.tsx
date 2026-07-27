@@ -4,11 +4,11 @@ import { TransformationStatProps } from './transformation-stat.interface';
 
 const TransformationStat = ({ ki }: TransformationStatProps) => {
   return (
-    <View className="bg-gray-200 flex-row items-center rounded-xl p-3 gap-x-3">
+    <View className="bg-surface-secondary flex-row items-center rounded-xl p-3 gap-x-3">
       <Lucide name="zap" size={18} className="text-primary" />
       <View className="flex-col">
-        <Text className="text-ink-3 font-dmsans-medium text-xs">Ki</Text>
-        <Text className="font-oswald-bold text-lg">{ki}</Text>
+        <Text className="text-ink-terceary font-dmsans-medium text-xs">Ki</Text>
+        <Text className="font-oswald-bold text-lg text-ink-primary">{ki}</Text>
       </View>
     </View>
   );

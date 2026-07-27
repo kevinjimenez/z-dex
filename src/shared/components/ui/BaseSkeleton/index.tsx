@@ -18,13 +18,13 @@ const BaseSkeleton = ({
   const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
 
   useEffect(() => {
-    opacity.value = withRepeat(withTiming(1, { duration: 800 }), -1, true);
+    opacity.value = withRepeat(withTiming(0.5, { duration: 800 }), -1, true);
   }, []);
 
   return (
     <Animated.View
       style={[{ width, height }, style]}
-      className={twMerge('rounded-md bg-gray-200', className)}
+      className={twMerge('rounded-md bg-surface-terceary', className)}
     />
   );
 };

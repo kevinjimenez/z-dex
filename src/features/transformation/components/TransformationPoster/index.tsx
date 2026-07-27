@@ -11,7 +11,7 @@ const TransformationPoster = ({
   ...rest
 }: TransformationPosterProps) => {
   return (
-    <View className={twMerge('bg-primary-light', customClassContainer)}>
+    <View className={twMerge('bg-primary-200', customClassContainer)}>
       <Image source={{ uri: image }} style={{ width, height }} {...rest} />
     </View>
   );

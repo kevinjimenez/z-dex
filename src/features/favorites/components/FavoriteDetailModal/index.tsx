@@ -17,22 +17,14 @@ const FavoriteDetailModal = ({
     <BaseModal size="full" visible={!!selected}>
       {selected && (
         <ScrollView
-          className="flex-1 w-full"
+          className="flex-1 w-full bg-surface-secondary"
           style={{
             paddingTop: top,
           }}
         >
           <View className="relative">
             {/*Container*/}
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                rowGap: 20,
-                marginTop: 70,
-              }}
-            >
+            <View className="flex-col justify-center items-center mt-20 gap-y-10">
               {/*Poster*/}
               <FavoritePoster image={selected.image} />
               {/*Name*/}
@@ -49,12 +41,12 @@ const FavoriteDetailModal = ({
                 <BaseRow label="Planeta" value={selected.originPlanet?.name} />
               </View>
 
-              <View className="bg-ink-3 p-7 rounded-t-3xl">
-                <Text className="uppercase font-oswald-semibold text-white text-2xl pb-5">
+              <View className="bg-ink-terceary p-7 rounded-t-3xl">
+                <Text className="uppercase font-oswald-semibold text-ink-primary-50 text-2xl pb-5">
                   Biografía
                 </Text>
                 <Text
-                  className="font-dmsans-medium text-white"
+                  className="font-dmsans-medium text-ink-primary-50"
                   style={{
                     fontSize: 15,
                     lineHeight: 22,
@@ -66,18 +58,9 @@ const FavoriteDetailModal = ({
             </View>
 
             <BaseButtonIcon
+              className="absolute size-12 top-0 left-6 bg-surface-terceary border border-surface-secondary items-center justify-center rounded-full"
               icon="x"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 25,
-                backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                padding: 8,
-                borderRadius: 20,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              color="text-ink-3"
+              color="text-ink-terceary"
               onPress={onClose}
             />
           </View>

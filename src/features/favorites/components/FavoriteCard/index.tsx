@@ -21,7 +21,7 @@ const FavoriteCard = ({
       className="w-[48%] flex-col gap-y-2 relative"
       onPress={onSelected}
     >
-      <View className="px-10 rounded-xl border border-ink-dark-3 bg-ink-2/50">
+      <View className="px-10 rounded-xl border border-surface-terceary bg-surface-terceary">
         <View style={{ height: avartarSize }}>
           <Image
             contentFit="cover"
@@ -31,20 +31,22 @@ const FavoriteCard = ({
           />
         </View>
         <BaseButtonIcon
-          className="absolute right-2 top-2 bg-red-300 size-8 items-center justify-center rounded-full"
+          className="absolute right-2 top-3 items-center justify-center"
           icon="heart"
+          filled
           color="text-red-500"
-          size={15}
+          size={25}
           onPress={onFavorited}
         />
       </View>
-      <Text className="font-oswald-semibold">{name}</Text>
+      <Text className="font-oswald-semibold text-lg">{name}</Text>
       <View className="flex-row gap-x-2 items-center">
-        <BaseBadge text={race} color="text-ink-3" />
+        <BaseBadge text={race} />
         <LabelIcon
           prefixIcon="zap"
+          color="text-primary"
           text={ki}
-          customClassText="font-dmsans-semibold text-xs text-ink-3"
+          customClassText="font-dmsans-semibold text-xs text-primary"
         />
       </View>
     </Pressable>

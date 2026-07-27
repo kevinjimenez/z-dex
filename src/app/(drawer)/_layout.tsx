@@ -10,14 +10,15 @@ const DrawerLayout = () => {
       drawerContent={CustomDrawer}
       screenOptions={{
         headerShown: false,
-        drawerActiveTintColor: '#E77B49',
+        drawerActiveTintColor: '#d9662b',
+        drawerInactiveTintColor: '#b0ada6',
         overlayColor: 'rgba(0,0,0,0.4)',
         drawerActiveBackgroundColor: 'transparent', // Quitamos el fondo activo
         // Estilo base para cada elemento del menú
         drawerItemStyle: {
           // 1. Añadimos el separador (línea inferior) a todos los ítems
           borderBottomWidth: 1,
-          borderBottomColor: '#E0E0E0', // Color gris claro para la línea
+          borderBottomColor: '#e4e2de', // Color gris claro para la línea
           // borderRadius: 0,
         },
       }}

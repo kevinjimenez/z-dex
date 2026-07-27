@@ -8,10 +8,10 @@ const TabsLayout = () => {
     <Tabs
       screenOptions={{
         // title: 'tabs',
-        tabBarActiveTintColor: '#FF6A1A',
+        tabBarActiveTintColor: '#d9662b',
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#FBF3E9',
+          backgroundColor: '#fafaf8',
           borderTopWidth: 1,
           // elevation: 8, // sombra en Android
           // shadowColor: '#000', // sombra en iOS

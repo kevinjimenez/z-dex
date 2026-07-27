@@ -4,29 +4,29 @@ import { Text, View } from 'react-native';
 import { CharacterPlanetCardProps } from './interfaces/character-planet-card.interface';
 import PlanetPoster from './PlanetPoster';
 
-const CharacterPlanetCard = ({
-  image,
-  name,
-  isDestroyed,
-}: CharacterPlanetCardProps) => {
+const CharacterPlanetCard = ({ planet }: CharacterPlanetCardProps) => {
   return (
-    <View className="w-full h-28 rounded-xl overflow-hidden relative bg-black">
-      <PlanetPoster image={image} contentFit="cover" />
+    <View className="w-full h-32 rounded-xl overflow-hidden relative bg-black">
+      <PlanetPoster image={planet.image} contentFit="cover" />
 
       <View className="flex-col absolute bottom-3 left-3 gap-y-1">
         <LabelIcon
           customClassContainer="gap-x-1.5"
           prefixIcon="earth"
+          filled
+          size={20}
           text="Planeta de origen"
           color="text-white"
-          customClassText="text-white text-xs font-dmsans-regular"
+          customClassText="text-white text-sm font-dmsans-regular"
         />
         <View className="flex-row items-center gap-x-2">
-          <Text className="text-white font-oswald-bold text-2xl">{name}</Text>
+          <Text className="text-white font-oswald-medium text-3xl">
+            {planet.name}
+          </Text>
           <BaseBadge
-            customClassBadge="bg-primary"
+            customClassBadge={planet.isDestroyed ? 'bg-error' : 'bg-success'}
             customClassText="text-white font-dmsans-semibold"
-            text={isDestroyed ? 'Destruido' : 'Activo'}
+            text={planet.isDestroyed ? 'Destruido' : 'Activo'}
           />
         </View>
       </View>

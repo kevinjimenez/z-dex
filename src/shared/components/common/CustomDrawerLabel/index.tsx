@@ -5,10 +5,10 @@ import { CustomDrawerLabelProps } from './interfaces/custom-drawer-label.interfa
 const CustomDrawerLabel = ({ color, icon, label }: CustomDrawerLabelProps) => {
   return (
     <View className="flex-row justify-between items-center">
-      <Text style={{ color }} className="font-medium">
+      <Text style={{ color }} className="font-medium text-muted-primary">
         {label}
       </Text>
-      <Lucide name={icon} size={17} color="gray" />
+      <Lucide name={icon} size={17} className="text-muted-primary" />
     </View>
   );
 };

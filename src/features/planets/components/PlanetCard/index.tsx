@@ -13,7 +13,7 @@ const PlanetCard = ({
   const statusPlanet = isDestroyed ? 'Destruido' : 'Activo';
 
   return (
-    <View className="bg-white rounded-xl overflow-hidden border border-secondary/20">
+    <View className="bg-surface-secondary rounded-xl overflow-hidden border border-surface-terceary">
       <Image
         source={{ uri: image }}
         contentPosition="center"
@@ -23,20 +23,21 @@ const PlanetCard = ({
         <View className="flex-row justify-between items-center">
           <LabelIcon
             text={name}
+            filled
             prefixIcon="earth"
-            customClassText="text-xl font-oswald-bold"
+            customClassText="text-2xl font-oswald-semibold"
             customClassContainer="gap-x-3"
-            size={20}
+            size={28}
             color="text-primary"
           />
           <BaseBadge
             text={statusPlanet}
             customClassText="text-xs text-white font-dmsans-bold"
-            customClassBadge="bg-primary"
+            customClassBadge={isDestroyed ? 'bg-error' : 'bg-success'}
           />
         </View>
 
-        <Text className="text-pretty font-dmsans-medium text-ink-3">
+        <Text className="text-pretty font-dmsans-medium text-ink-terceary">
           {description}
         </Text>
       </View>

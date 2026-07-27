@@ -6,7 +6,7 @@ const CharacterListSkeleton = () => {
     <View>
       {Array.from({ length: 10 }).map((_, index) => (
         <View key={index} className={index > 0 ? 'mt-4' : undefined}>
-          <View className="rounded-xl border border-slate-200 flex-row gap-x-5 p-3 items-center bg-white">
+          <View className="rounded-xl border border-surface-terceary flex-row gap-x-5 p-3 items-center bg-white">
             <BaseSkeleton width={60} height={60} className="rounded-lg" />
             <View className="flex-col justify-center flex-1 gap-y-2">
               <BaseSkeleton width="70%" height={20} />
