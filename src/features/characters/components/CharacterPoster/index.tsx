@@ -1,33 +1,32 @@
+import BaseThumbnail from '@/shared/components/ui/BaseThumbnail';
 import { LinearGradient } from 'expo-linear-gradient';
-import CharacterAvatar from '../CharacterAvatar';
+import { useWindowDimensions } from 'react-native';
 import { CharacterPosterProps } from './interfaces/character-poster.interface';
 import PosterTitle from './PosterTitle';
-import { useWindowDimensions } from 'react-native';
 
-const CharacterPoster = ({ image, race, name }: CharacterPosterProps) => {
+const CharacterPoster = ({ character }: CharacterPosterProps) => {
   const { width } = useWindowDimensions();
   const avatarSize = width * 0.9;
 
   return (
     <>
-      <CharacterAvatar
-        style={{
-          width: avatarSize,
-          height: avatarSize,
-        }}
-        customClassContainer="rounded-lg bg-white w-full justify-center items-center"
-        uri={image}
+      <BaseThumbnail
+        image={character.image}
+        height={avatarSize}
         transition={1000}
         contentFit="contain"
-        width="100%"
-        height="100%"
+        customClassContainer="rounded-lg justify-center items-center bg-primary-200"
       />
 
-      <PosterTitle race={race} name={name} />
+      <PosterTitle race={character.race} name={character.name} />
 
       {/*Bajo hacia arriba*/}
       <LinearGradient
-        colors={['rgba(251,243,233,0)', 'rgba(251,243,233,0.6)', '#FBF3E9']}
+        colors={[
+          'rgba(251,243,233,0)',
+          'rgba(251,243,233,0.6)',
+          'rgba(243, 242, 240, 0.99)',
+        ]}
         style={{
           position: 'absolute',
           bottom: 0,
@@ -38,8 +37,12 @@ const CharacterPoster = ({ image, race, name }: CharacterPosterProps) => {
       />
 
       {/*Arriba hacia abajo*/}
-      <LinearGradient
-        colors={['#FBF3E9', 'rgba(251,243,233,0.6)', 'rgba(251,243,233,0)']}
+      {/*<LinearGradient
+        colors={[
+          'rgba(243, 242, 240, 0.99)',
+          'rgba(251,243,233,0.6)',
+          'rgba(251,243,233,0)',
+        ]}
         style={{
           position: 'absolute',
           top: 0,
@@ -47,11 +50,15 @@ const CharacterPoster = ({ image, race, name }: CharacterPosterProps) => {
           right: 0,
           height: 12,
         }}
-      />
+      />*/}
 
       {/*Izq hacia der*/}
       <LinearGradient
-        colors={['#FBF3E9', 'rgba(251,243,233,0.6)', 'rgba(251,243,233,0)']}
+        colors={[
+          'rgba(243, 242, 240, 0.99)',
+          'rgba(251,243,233,0.6)',
+          'rgba(251,243,233,0)',
+        ]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
         style={{
@@ -65,7 +72,11 @@ const CharacterPoster = ({ image, race, name }: CharacterPosterProps) => {
 
       {/*Der hacia izq*/}
       <LinearGradient
-        colors={['#FBF3E9', 'rgba(251,243,233,0.6)', 'rgba(251,243,233,0)']}
+        colors={[
+          'rgba(243, 242, 240, 0.99)',
+          'rgba(251,243,233,0.6)',
+          'rgba(251,243,233,0)',
+        ]}
         start={{ x: 1, y: 0 }}
         end={{ x: 0, y: 0 }}
         style={{
