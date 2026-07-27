@@ -13,7 +13,7 @@ const CharacterCard = ({ item, ...rest }: CharacterCardProps) => {
   const isFavorite = useFavoriteStore((state) => state.isFavorite(item.id));
 
   const goToDetail = (id: number) => {
-    router.push(`/detail/${id}`);
+    router.push(`/character/detail/${id}`);
   };
 
   const handleFavoriteCharacter = async (item: CharacterResponse) => {

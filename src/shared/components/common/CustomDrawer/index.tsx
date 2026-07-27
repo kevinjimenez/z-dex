@@ -41,7 +41,7 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
           quieras poder abrir directo desde el drawer.
         */}
         <DrawerTabItem
-          path="/characters"
+          path="/character"
           icon="drama"
           label="Personajes"
           onNavigate={closeDrawer}

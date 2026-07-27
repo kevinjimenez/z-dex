@@ -1,7 +1,7 @@
 import { Redirect } from 'expo-router';
 
 const AppScreen = () => {
-  return <Redirect href="/characters" />;
+  return <Redirect href="/character" />;
 };
 
 export default AppScreen;
