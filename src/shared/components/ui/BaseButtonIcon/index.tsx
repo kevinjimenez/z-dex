@@ -1,9 +1,12 @@
 import Lucide from '@react-native-vector-icons/lucide';
 import { Pressable } from 'react-native';
 import { BaseButtonIconProps } from './base-button-icon.interface';
+import Ionicons from '@react-native-vector-icons/ionicons';
 
 const BaseButtonIcon = ({
   icon,
+  filledIcon,
+  filled = false,
   size = 23,
   color = 'black',
   onPress,
@@ -11,13 +14,12 @@ const BaseButtonIcon = ({
   ...rest
 }: BaseButtonIconProps) => {
   return (
-    <Pressable
-      className="pr-2"
-      onPress={onPress}
-      onLongPress={onLongPress}
-      {...rest}
-    >
-      <Lucide name={icon} size={size} className={color} />
+    <Pressable onPress={onPress} onLongPress={onLongPress} {...rest}>
+      {filled && filledIcon ? (
+        <Ionicons name={filledIcon} size={size} className={color} />
+      ) : (
+        <Lucide name={icon} size={size} className={color} />
+      )}
     </Pressable>
   );
 };

@@ -7,6 +7,7 @@ const CharacterHero = ({
   image,
   race,
   name,
+  isFavorite,
   onBack,
   onToggleFavorite,
 }: CharacterHeroProps) => {
@@ -24,6 +25,7 @@ const CharacterHero = ({
         className="size-11 justify-center items-center bg-white rounded-full border border-gray-300 absolute top-2 right-0 z-10 shadow-lg shadow-primary/50 elevation-lg"
         icon="heart"
         size={20}
+        color={isFavorite ? 'text-red-500' : 'text-secondary'}
         onPress={onToggleFavorite}
         // style={{ elevation: 100, shadowColor: '#FF6A1A' }}
       />

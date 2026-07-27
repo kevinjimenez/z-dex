@@ -1,7 +1,7 @@
 import { Transformation } from '@/core/interfaces/responses/character-response.interface';
 import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 import BaseModal from '@/shared/components/ui/BaseModal';
-import { View } from 'react-native';
+import { useWindowDimensions, View } from 'react-native';
 import TransformationPoster from '../components/TransformationPoster';
 import TransformationStat from '../components/TransformationStat';
 import TransformationTitle from '../components/TransformationTitle';
@@ -15,6 +15,9 @@ const TransformationDetailModal = ({
   selected,
   onPress,
 }: TransformationDetailModalProps) => {
+  const { width } = useWindowDimensions();
+  const avatarSize = width * 0.65;
+
   return (
     <BaseModal size="half" visible={!!selected}>
       {selected && (
@@ -23,7 +26,7 @@ const TransformationDetailModal = ({
             image={selected.image}
             contentPosition="top"
             width="100%"
-            height={250}
+            height={avatarSize}
           />
           <View className="px-5 gap-y-5">
             <TransformationTitle title={selected.name} />

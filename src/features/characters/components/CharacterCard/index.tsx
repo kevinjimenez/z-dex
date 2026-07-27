@@ -1,29 +1,31 @@
+import { useFavoriteStore } from '@/features/favorites/store/useFavorite';
 import LabelIcon from '@/shared/components/common/LabelIcon';
 import BaseBadge from '@/shared/components/ui/BaseBadge';
 import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
-import * as Haptics from 'expo-haptics';
-import { useState } from 'react';
+import { router } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 import CharacterAvatar from '../CharacterAvatar';
 import { CharacterCardProps } from './interfaces/character-card.interface';
-import { router } from 'expo-router';
 
 const CharacterCard = ({ item, ...rest }: CharacterCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  // const { addFavorite, removeFavorite } = useFavoriteStore();
+  const isFavorite = useFavoriteStore((state) => state.isFavorite(item.id));
 
   const goToDetail = (id: number) => {
     router.push(`/detail/${id}`);
   };
 
-  const handleFavoriteCharacter = () => {
-    Haptics.selectionAsync();
-    setIsFavorite(() => true);
-  };
+  // const handleFavoriteCharacter = async (item: CharacterResponse) => {
+  //   Haptics.selectionAsync();
+  //   // setIsFavorite(() => true);
+  //   addFavorite(item);
+  // };
 
-  const handleNotFavoriteCharacter = () => {
-    Haptics.selectionAsync();
-    setIsFavorite(() => false);
-  };
+  // const handleNotFavoriteCharacter = (id: number) => {
+  //   Haptics.selectionAsync();
+  //   // setIsFavorite(() => false);
+  //   removeFavorite(id);
+  // };
 
   return (
     <Pressable
@@ -49,12 +51,17 @@ const CharacterCard = ({ item, ...rest }: CharacterCardProps) => {
           />
         </View>
       </View>
-      <BaseButtonIcon
-        onPress={handleFavoriteCharacter}
-        onLongPress={handleNotFavoriteCharacter}
-        icon="heart"
-        color={isFavorite ? 'text-red-500' : 'text-secondary'}
-      />
+      {isFavorite && (
+        <BaseButtonIcon
+          className="pr-2"
+          // onPress={() => handleFavoriteCharacter(item)}
+          // onLongPress={() => handleNotFavoriteCharacter(item.id)}
+          icon="heart"
+          filledIcon="heart"
+          filled
+          color="text-red-500"
+        />
+      )}
     </Pressable>
   );
 };
