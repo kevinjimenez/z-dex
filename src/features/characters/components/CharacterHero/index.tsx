@@ -15,6 +15,7 @@ const CharacterHero = ({
       <BaseButtonIcon
         className="size-12 justify-center items-center bg-white rounded-full border-2 border-surface-terceary absolute top-2 left-0 z-10"
         icon="arrow-left"
+        color="text-ink-terceary"
         size={20}
         onPress={onBack}
       />
@@ -23,7 +24,7 @@ const CharacterHero = ({
         icon="heart"
         size={20}
         filled={isFavorite}
-        color={isFavorite ? 'text-error' : 'text-surface-terceary'}
+        color={isFavorite ? 'text-error' : 'text-muted-primary'}
         onPress={onToggleFavorite}
       />
     </View>
