@@ -12,19 +12,21 @@ const DrawerHeader = ({ onPress }: DrawerHeaderProps) => {
         text="G"
       />
       <View className="flex-col flex-1 gap-y-1">
-        <Text className="font-oswald-bold text-2xl">Guerrero Z</Text>
+        <Text className="font-oswald-bold text-2xl text-ink-primary">
+          Guerrero Z
+        </Text>
         <Text
-          className="text-sm text-ink-2 font-dmsans-medium"
+          className="text-sm text-ink-secondary font-dmsans-medium"
           numberOfLines={1}
         >
           guerrero@gmail.com
         </Text>
       </View>
       <BaseButtonIcon
-        className="bg-secondary-light rounded-full size-10 items-center justify-center"
-        color="text-secondary"
+        className="bg-surface-terceary rounded-full size-12 items-center justify-center"
+        color="text-ink-terceary"
         icon="x"
-        size={18}
+        size={20}
         onPress={onPress}
       />
     </View>

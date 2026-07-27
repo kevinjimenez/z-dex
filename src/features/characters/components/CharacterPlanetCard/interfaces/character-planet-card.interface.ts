@@ -1,5 +1,5 @@
+import { OriginPlanet } from '@/core/interfaces/responses/character-response.interface';
+
 export interface CharacterPlanetCardProps {
-  image: string;
-  name: string;
-  isDestroyed: boolean;
+  planet: OriginPlanet;
 }

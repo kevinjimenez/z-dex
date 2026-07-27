@@ -7,7 +7,7 @@ const ScreenContainer = ({ className, children }: ScreenContainerProps) => {
   const { top } = useSafeAreaInsets();
   return (
     <View
-      className={twMerge('bg-surface-page1 flex-1 px-6', className)}
+      className={twMerge('bg-surface-primary flex-1 px-6', className)}
       style={{ paddingTop: top }}
     >
       {children}

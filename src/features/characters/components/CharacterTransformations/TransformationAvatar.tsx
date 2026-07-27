@@ -27,7 +27,7 @@ const TransformationAvatar = ({
       />
       {/*Abajo hacia arriba*/}
       <LinearGradient
-        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.4)']}
+        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.2)']}
         style={{
           position: 'absolute',
           bottom: 0,

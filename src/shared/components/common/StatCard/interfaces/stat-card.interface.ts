@@ -1,9 +1,11 @@
+import { IoniconsIconName } from '@react-native-vector-icons/ionicons';
 import { LucideIconName } from '@react-native-vector-icons/lucide';
 
 export interface StatCardProps {
   title: string;
   text: string;
-  suffixIcon?: LucideIconName;
+  filled?: boolean;
+  suffixIcon?: LucideIconName | IoniconsIconName;
   size?: number;
   color?: string;
   classContainer?: string;

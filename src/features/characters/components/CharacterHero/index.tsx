@@ -4,30 +4,28 @@ import CharacterPoster from '../CharacterPoster';
 import { CharacterHeroProps } from './interfaces/character-hero.interface';
 
 const CharacterHero = ({
-  image,
-  race,
-  name,
+  character,
   isFavorite,
   onBack,
   onToggleFavorite,
 }: CharacterHeroProps) => {
   return (
     <View className="relative mb-4">
-      <CharacterPoster image={image} race={race} name={name} />
+      <CharacterPoster character={character} />
       <BaseButtonIcon
-        className="size-11 justify-center items-center bg-white rounded-full border border-gray-300 absolute top-2 left-0 z-10 shadow-lg shadow-primary/50 elevation-lg"
+        className="size-12 justify-center items-center bg-white rounded-full border-2 border-surface-terceary absolute top-2 left-0 z-10"
         icon="arrow-left"
+        color="text-ink-terceary"
         size={20}
         onPress={onBack}
-        // style={{ elevation: 8, shadowColor: '#FF6A1A' }}
       />
       <BaseButtonIcon
-        className="size-11 justify-center items-center bg-white rounded-full border border-gray-300 absolute top-2 right-0 z-10 shadow-lg shadow-primary/50 elevation-lg"
+        className="size-12 justify-center items-center bg-white rounded-full border-2 border-surface-terceary absolute top-2 right-0 z-10"
         icon="heart"
         size={20}
-        color={isFavorite ? 'text-red-500' : 'text-secondary'}
+        filled={isFavorite}
+        color={isFavorite ? 'text-error' : 'text-muted-primary'}
         onPress={onToggleFavorite}
-        // style={{ elevation: 100, shadowColor: '#FF6A1A' }}
       />
     </View>
   );

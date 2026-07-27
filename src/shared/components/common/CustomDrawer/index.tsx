@@ -25,7 +25,7 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
 
       <View className="flex-1 mt-6">
         <Text
-          className="text-ink-2 uppercase text-sm pb-2"
+          className="text-ink-secondary uppercase text-sm pb-2"
           style={{ letterSpacing: 0.5 }}
         >
           Navegación
@@ -41,7 +41,7 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
           quieras poder abrir directo desde el drawer.
         */}
         <DrawerTabItem
-          path="/characters"
+          path="/character"
           icon="drama"
           label="Personajes"
           onNavigate={closeDrawer}
@@ -63,7 +63,7 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
         <View className="flex-col gap-y-1 mt-8">
           <View className="flex-1">
             <Text
-              className="text-ink-2 uppercase text-sm pb-2"
+              className="text-ink-secondary uppercase text-sm pb-2"
               style={{ letterSpacing: 0.5 }}
             >
               Apariencia

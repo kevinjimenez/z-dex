@@ -7,7 +7,7 @@ const CharactersLayout = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="characters/index" />
+      <Stack.Screen name="index" />
       <Stack.Screen
         name="detail/[id]"
         options={{

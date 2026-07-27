@@ -10,7 +10,7 @@ const Avartar = ({
   return (
     <View
       className={twMerge(
-        'size-14 rounded-2xl bg-primary justify-center',
+        'size-14 rounded-2xl bg-ink-primary-700 justify-center items-center',
         customClassContainer,
       )}
     >

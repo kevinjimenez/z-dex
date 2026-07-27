@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './App.tsx',
-    './src/**/*.{js,jsx,ts,tsx}',
-    './components/**/*.{js,jsx,ts,tsx}',
-  ],
+  content: ['./App.tsx', './src/**/*.{js,jsx,ts,tsx}'],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
@@ -161,17 +157,17 @@ module.exports = {
           950: '#121d11',
         },
         error: {
-          50: '#fcf5f4',
-          100: '#faebe9',
-          200: '#f5d9d6',
-          300: '#ecbab5',
-          400: '#e1918b',
-          500: '#d26661',
-          DEFAULT: '#bd4444',
-          700: '#9d3336',
-          800: '#842d32',
-          900: '#72292f',
-          950: '#3f1215',
+          50: '#fef3f2',
+          100: '#fee5e2',
+          200: '#ffcfc9',
+          300: '#feada3',
+          400: '#fa7e6f',
+          500: '#f25441',
+          DEFAULT: '#d0311e',
+          700: '#bc2a19',
+          800: '#9b2719',
+          900: '#81261b',
+          950: '#461009',
         },
       },
       fontFamily: {

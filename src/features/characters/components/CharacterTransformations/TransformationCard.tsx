@@ -1,7 +1,7 @@
+import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 import { Pressable, Text, useWindowDimensions, View } from 'react-native';
 import { TransformationCardProps } from './interfaces/transformation-card.interface';
 import TransformationAvatar from './TransformationAvatar';
-import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 
 const TransformationCard = ({
   transformation,
@@ -17,9 +17,11 @@ const TransformationCard = ({
           width: avatarSize,
           height: avatarSize,
         }}
-        contentFit="contain"
+        contentFit="cover"
+        contentPosition="top"
         transition={1000}
         customClassImage="rounded-xl"
+        customClassContainer="bg-surface-terceary border border-surface-secondary"
         image={transformation.image}
         width="100%"
         height="100%"
@@ -31,10 +33,10 @@ const TransformationCard = ({
       </View>
 
       <BaseButtonIcon
-        size={14}
+        size={16}
         icon="expand"
         color="text-primary"
-        className="absolute bg-white/80 top-2 right-2 size-7 items-center justify-center rounded-full"
+        className="absolute bg-white/80 top-2 right-2 size-8 items-center justify-center rounded-full"
       />
     </Pressable>
   );

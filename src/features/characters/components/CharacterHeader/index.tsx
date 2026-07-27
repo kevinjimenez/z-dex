@@ -8,10 +8,12 @@ const CharacterHeader = () => {
       <DrawerMenuButton />
 
       <View className="flex-col flex-1 gap-y-1">
-        <Text className="text-sm text-ink-3 font-dmsans-regular">
+        <Text className="text-sm text-ink-secondary font-dmsans-regular">
           Bienvenido de nuevo
         </Text>
-        <Text className="font-oswald-semibold text-3xl">Universo Z</Text>
+        <Text className="font-oswald-semibold text-3xl text-ink-primary">
+          Universo Z
+        </Text>
       </View>
 
       <Avartar text="G" />

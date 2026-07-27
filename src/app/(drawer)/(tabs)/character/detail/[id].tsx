@@ -29,38 +29,30 @@ const ComponentName = () => {
     <ScrollView
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingTop: top, paddingBottom: bottom }}
-      className="bg-surface-page1 flex-1 px-8"
+      className="bg-surface-secondary flex-1 px-8"
     >
       {isLoading || !dragonBallCharacter ? (
         <CharacterDetailSkeleton />
       ) : (
         <>
           <CharacterHero
-            image={dragonBallCharacter.image}
-            race={dragonBallCharacter.race}
-            name={dragonBallCharacter.name}
+            character={dragonBallCharacter}
             isFavorite={isFavorite}
             onBack={goToBack}
             onToggleFavorite={() => toggleFavorite(dragonBallCharacter)}
           />
 
-          <CharacterInfoSection
-            ki={dragonBallCharacter.ki}
-            maxKi={dragonBallCharacter.maxKi}
-            gender={dragonBallCharacter.gender}
-            affiliation={dragonBallCharacter.affiliation}
-            planet={dragonBallCharacter.originPlanet}
-          />
+          <CharacterInfoSection character={dragonBallCharacter} />
 
           {transformations.length > 0 && (
             <CharacterTransformations transformations={transformations} />
           )}
 
           <View className="flex-1 gap-y-2">
-            <Text className="uppercase text-lg font-oswald-bold">
+            <Text className="uppercase text-xl font-oswald-medium text-ink-terceary">
               Biografía
             </Text>
-            <Text className="text-base text-pretty font-dmsans-regular">
+            <Text className="text-base text-pretty font-dmsans-regular text-ink-terceary">
               {dragonBallCharacter.description}
             </Text>
           </View>

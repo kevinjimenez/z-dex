@@ -8,10 +8,10 @@ const TabsLayout = () => {
     <Tabs
       screenOptions={{
         // title: 'tabs',
-        tabBarActiveTintColor: '#FF6A1A',
+        tabBarActiveTintColor: '#d9662b',
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#FBF3E9',
+          backgroundColor: '#fafaf8',
           borderTopWidth: 1,
           // elevation: 8, // sombra en Android
           // shadowColor: '#000', // sombra en iOS
@@ -22,10 +22,10 @@ const TabsLayout = () => {
       }}
     >
       <Tabs.Screen
-        name="(stack)"
+        name="character"
         options={({ route }) => {
           const focusedRouteName =
-            getFocusedRouteNameFromRoute(route) ?? 'characters/index';
+            getFocusedRouteNameFromRoute(route) ?? 'index';
           // en iOS el modal ya tapa el tab bar solo; esto es únicamente
           // para Android, donde el modal es solo una animación y no lo oculta
           const isDetail =

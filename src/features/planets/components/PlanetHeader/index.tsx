@@ -6,8 +6,10 @@ const PlanetHeader = () => {
     <View className="mb-6 flex-row gap-x-4 items-center">
       <CustomDrawerMenuButton />
       <View className="flex-col gap-y-2">
-        <Text className="font-oswald-bold text-3xl">Planetas</Text>
-        <Text className="font-dmsans-medium text-sm text-ink-3">
+        <Text className="font-oswald-bold text-3xl text-ink-primary">
+          Planetas
+        </Text>
+        <Text className="font-dmsans-medium text-sm text-ink-terceary">
           Explorá los planetas del universo Z
         </Text>
       </View>

@@ -11,7 +11,9 @@ const TransformationTitle = ({ title }: TransformationTitleProps) => {
         Transformación
       </Text>
 
-      <Text className="text-2xl font-oswald-bold">{title}</Text>
+      <Text className="text-2xl font-oswald-bold text-ink-primary">
+        {title}
+      </Text>
     </View>
   );
 };

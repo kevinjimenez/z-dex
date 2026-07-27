@@ -43,7 +43,7 @@ const CustomDrawerMenuButton = ({
     <Pressable
       onPress={toggleDrawer}
       className={twMerge(
-        'bg-white size-14 items-center justify-center rounded-2xl border border-gray-300',
+        'bg-white size-14 items-center justify-center rounded-2xl border border-surface-terceary',
         className,
       )}
       {...rest}

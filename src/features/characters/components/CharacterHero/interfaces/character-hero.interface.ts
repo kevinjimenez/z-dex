@@ -1,7 +1,7 @@
+import { CharacterResponse } from '@/core/interfaces/responses/character-response.interface';
+
 export interface CharacterHeroProps {
-  image: string;
-  race: string;
-  name: string;
+  character: CharacterResponse;
   isFavorite?: boolean;
   onBack: () => void;
   onToggleFavorite: () => void;

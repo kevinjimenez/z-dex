@@ -39,7 +39,7 @@ const TransformationDetailModal = ({
             size={20}
             icon="x"
             color="text-white"
-            className="absolute bg-black/50 top-4 right-4 size-10 items-center justify-center rounded-full"
+            className="absolute bg-black/50 top-4 right-4 size-12 items-center justify-center rounded-full"
           />
         </View>
       )}

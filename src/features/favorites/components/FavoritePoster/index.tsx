@@ -5,11 +5,11 @@ import { FavoritePosterProps } from './interfaces/favorite-poster.interface';
 const FavoritePoster = ({ image }: FavoritePosterProps) => {
   const { width } = useWindowDimensions();
 
-  const avatarSize = width * 0.4;
+  const avatarSize = width * 0.5;
 
   return (
     <View
-      className="rounded-full border border-primary overflow-hidden"
+      className="rounded-full border-4 border-white overflow-hidden p-2 bg-surface-terceary"
       style={{
         width: avatarSize,
         height: avatarSize,

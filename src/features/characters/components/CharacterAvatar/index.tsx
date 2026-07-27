@@ -11,7 +11,12 @@ const CharacterAvatar = ({
   ...rest
 }: CharacterAvatarProps) => {
   return (
-    <View className={twMerge('rounded-lg bg-frame', customClassContainer)}>
+    <View
+      className={twMerge(
+        'rounded-lg bg-surface-terceary',
+        customClassContainer,
+      )}
+    >
       <Image source={{ uri }} style={{ width, height }} {...rest} />
     </View>
   );
