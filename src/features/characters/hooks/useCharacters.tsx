@@ -27,11 +27,15 @@ export const useCharacters = () => {
   };
 };
 
-export const useCharacterById = (id: number) => {
+export const useCharacterById = (
+  id: number,
+  options?: { enabled?: boolean },
+) => {
   const character = useQuery({
     queryKey: ['dragon_ball', 'character', id],
     queryFn: () => characterByIdAction(id),
     staleTime: 1000 * 60 * 60 * 24,
+    enabled: options?.enabled ?? true,
   });
 
   const dragonBallCharacter = character.data;
@@ -40,6 +44,7 @@ export const useCharacterById = (id: number) => {
   return {
     dragonBallCharacter,
     isLoading: character.isLoading,
+    refetch: character.refetch,
     transformations,
   };
 };
