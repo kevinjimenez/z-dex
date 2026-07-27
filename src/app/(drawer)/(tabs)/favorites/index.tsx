@@ -23,6 +23,8 @@ const FavoritesScreen = () => {
           <FavoriteCard
             image={item.image}
             name={item.name}
+            race={item.race}
+            ki={item.ki}
             onSelected={() => setSelected(item)}
             onFavorited={() => removeFavorite(item.id)}
           />
