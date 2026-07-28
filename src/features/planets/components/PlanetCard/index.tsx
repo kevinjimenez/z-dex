@@ -1,28 +1,31 @@
 import LabelIcon from '@/shared/components/common/LabelIcon';
 import BaseBadge from '@/shared/components/ui/BaseBadge';
 import { Image } from 'expo-image';
-import { Text, View } from 'react-native';
+import { router } from 'expo-router';
+import { Pressable, Text, View } from 'react-native';
 import { PlanetCardProps } from './interfaces/planet-card.interface';
 
-const PlanetCard = ({
-  image,
-  name,
-  description,
-  isDestroyed,
-}: PlanetCardProps) => {
-  const statusPlanet = isDestroyed ? 'Destruido' : 'Activo';
+const PlanetCard = ({ planet }: PlanetCardProps) => {
+  const goToDetail = () => {
+    router.push(`/planets/detail/${planet.id}`);
+  };
+
+  const statusPlanet = planet.isDestroyed ? 'Destruido' : 'Activo';
 
   return (
-    <View className="bg-surface-secondary rounded-xl overflow-hidden border border-surface-terceary">
+    <Pressable
+      className="bg-surface-secondary rounded-xl overflow-hidden border border-surface-terceary"
+      onPress={goToDetail}
+    >
       <Image
-        source={{ uri: image }}
+        source={{ uri: planet.image }}
         contentPosition="center"
         style={{ width: '100%', height: 140 }}
       />
       <View className="flex-col px-5 py-4 gap-y-4">
         <View className="flex-row justify-between items-center">
           <LabelIcon
-            text={name}
+            text={planet.name}
             filled
             prefixIcon="earth"
             customClassText="text-2xl font-oswald-semibold"
@@ -33,15 +36,15 @@ const PlanetCard = ({
           <BaseBadge
             text={statusPlanet}
             customClassText="text-xs text-white font-dmsans-bold"
-            customClassBadge={isDestroyed ? 'bg-error' : 'bg-success'}
+            customClassBadge={planet.isDestroyed ? 'bg-error' : 'bg-success'}
           />
         </View>
 
         <Text className="text-pretty font-dmsans-medium text-ink-terceary">
-          {description}
+          {planet.description}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

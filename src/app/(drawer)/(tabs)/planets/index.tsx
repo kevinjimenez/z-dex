@@ -21,14 +21,7 @@ const PlanetsScreen = () => {
             data={dragonBallPlanets}
             contentContainerClassName="pb-5"
             fetchNextPage={fetchNextPage}
-            renderItem={({ item }) => (
-              <PlanetCard
-                image={item.image}
-                name={item.name}
-                isDestroyed={item.isDestroyed}
-                description={item.description}
-              />
-            )}
+            renderItem={({ item }) => <PlanetCard planet={item} />}
           />
 
           <PlanetPaginationLoader />
