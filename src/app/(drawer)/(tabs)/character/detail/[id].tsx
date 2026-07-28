@@ -10,7 +10,7 @@ import { StackActions } from 'expo-router/build/react-navigation';
 import { ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const ComponentName = () => {
+const CharacterDetailScreen = () => {
   const { top, bottom } = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { dragonBallCharacter, transformations, isLoading } =
@@ -69,4 +69,4 @@ const ComponentName = () => {
   );
 };
 
-export default ComponentName;
+export default CharacterDetailScreen;
