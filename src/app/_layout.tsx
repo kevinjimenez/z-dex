@@ -5,6 +5,7 @@ import Lucide from '@react-native-vector-icons/lucide';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as Notifications from 'expo-notifications';
 import { Slot, SplashScreen } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { cssInterop } from 'nativewind';
 import { useEffect } from 'react';
 import { Platform } from 'react-native';
@@ -46,6 +47,7 @@ const RootLayout = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <Slot />
+        <StatusBar style='inverted' animated />
       </QueryClientProvider>
     </GestureHandlerRootView>
   );
