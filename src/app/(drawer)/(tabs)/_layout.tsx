@@ -45,11 +45,20 @@ const TabsLayout = () => {
 
       <Tabs.Screen
         name="planets"
-        options={{
-          title: 'Planetas',
-          tabBarIcon: ({ color }) => (
-            <Lucide size={28} name="earth" color={color} />
-          ),
+        options={({ route }) => {
+          const focusedRouteName =
+            getFocusedRouteNameFromRoute(route) ?? 'index';
+
+          const isDetail =
+            Platform.OS === 'android' && focusedRouteName.startsWith('detail');
+
+          return {
+            title: 'Planetas',
+            tabBarIcon: ({ color }) => (
+              <Lucide size={28} name="earth" color={color} />
+            ),
+            ...(isDetail && { tabBarStyle: { display: 'none' } }),
+          };
         }}
       />
 
