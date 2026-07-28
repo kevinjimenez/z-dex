@@ -37,6 +37,9 @@ export const useFavoriteStore = create<FavoriteStore>()((set, get) => ({
       : [...get().favorites, character];
     set({ favorites: newFavorites });
     LocalStorageAdapter.setItem('guest', newFavorites);
+    if (!exists) {
+      notifyFavoriteAdded(character);
+    }
   },
 
   loadFavorites: async () => {
