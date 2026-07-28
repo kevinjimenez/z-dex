@@ -2,10 +2,10 @@ import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 import BaseModal from '@/shared/components/ui/BaseModal';
 import BaseRow from '@/shared/components/ui/BaseRow';
 import { ScrollView, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import FavoritePoster from '../FavoritePoster';
 import FavoriteTitle from '../FavoriteTitle';
 import { FavoriteDetailModalProps } from './interfaces/favorite-detail-modal.interface';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const FavoriteDetailModal = ({
   selected,
@@ -17,6 +17,7 @@ const FavoriteDetailModal = ({
     <BaseModal size="full" visible={!!selected}>
       {selected && (
         <ScrollView
+          showsHorizontalScrollIndicator={false}
           className="flex-1 w-full bg-surface-secondary"
           contentContainerStyle={{
             paddingTop: top,

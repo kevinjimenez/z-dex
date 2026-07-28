@@ -44,7 +44,7 @@ const TabsLayout = () => {
       />
 
       <Tabs.Screen
-        name="planets/index"
+        name="planets"
         options={{
           title: 'Planetas',
           tabBarIcon: ({ color }) => (

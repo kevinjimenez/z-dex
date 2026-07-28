@@ -1,3 +1,5 @@
+import { CharacterResponse } from './character-response.interface';
+
 export interface PlanetResponse {
   id: number;
   name: string;
@@ -5,4 +7,5 @@ export interface PlanetResponse {
   description: string;
   image: string;
   deletedAt: null;
+  characters: Omit<CharacterResponse, 'originPlanet' | 'transformations'>[];
 }
