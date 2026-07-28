@@ -18,9 +18,12 @@ const FavoriteDetailModal = ({
       {selected && (
         <ScrollView
           className="flex-1 w-full bg-surface-secondary"
-          style={{
+          contentContainerStyle={{
             paddingTop: top,
           }}
+          // style={{
+          //   paddingTop: top,
+          // }}
         >
           <View className="relative">
             {/*Container*/}

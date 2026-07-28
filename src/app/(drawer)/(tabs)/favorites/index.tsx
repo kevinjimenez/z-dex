@@ -35,6 +35,7 @@ const FavoritesScreen = () => {
             </View>
           </View>
         )}
+        contentContainerClassName="pb-5"
         renderItem={({ item }) => (
           <FavoriteCard
             image={item.image}
