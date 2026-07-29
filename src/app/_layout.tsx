@@ -1,13 +1,14 @@
+import { useFavoriteStore } from '@/features/favorites/store/useFavorite';
 import { useAppFonts } from '@/hooks/useAppFonts';
-import Lucide from '@react-native-vector-icons/lucide';
 import Ionicons from '@react-native-vector-icons/ionicons';
+import Lucide from '@react-native-vector-icons/lucide';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Slot, SplashScreen } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { cssInterop } from 'nativewind';
+import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '../global.css';
-import { useEffect } from 'react';
-import { useFavoriteStore } from '@/features/favorites/store/useFavorite';
 // permite usar className (NativeWind) en Lucide, mapeándolo a su prop style
 cssInterop(Ionicons, { className: 'style' });
 cssInterop(Lucide, { className: 'style' });
@@ -28,6 +29,7 @@ const RootLayout = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <Slot />
+        <StatusBar style="inverted" animated />
       </QueryClientProvider>
     </GestureHandlerRootView>
   );

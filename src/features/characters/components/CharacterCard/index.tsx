@@ -23,6 +23,9 @@ const CharacterCard = ({ item, ...rest }: CharacterCardProps) => {
 
   const handleFavoriteCharacter = async () => {
     Haptics.selectionAsync();
+
+    if (isFavorite) return;
+
     setIsAddingFavorite(true);
     const { data } = await refetch();
     if (data) {

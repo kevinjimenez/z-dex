@@ -1,9 +1,9 @@
+import LabelIcon from '@/shared/components/common/LabelIcon';
+import BaseBadge from '@/shared/components/ui/BaseBadge';
 import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 import { Image } from 'expo-image';
 import { Pressable, Text, useWindowDimensions, View } from 'react-native';
 import { FavoriteCardProps } from './interfaces/favorite-card.interface';
-import BaseBadge from '@/shared/components/ui/BaseBadge';
-import LabelIcon from '@/shared/components/common/LabelIcon';
 
 const FavoriteCard = ({
   name,
@@ -21,8 +21,8 @@ const FavoriteCard = ({
       className="w-[48%] flex-col gap-y-2 relative"
       onPress={onSelected}
     >
-      <View className="px-10 rounded-xl border border-surface-terceary bg-surface-terceary">
-        <View style={{ height: avartarSize }}>
+      <View className="px-10 rounded-xl border border-surface-terceary bg-surface-terceary items-center">
+        <View style={{ height: avartarSize, width: avartarSize }}>
           <Image
             contentFit="cover"
             contentPosition="top"

@@ -1,5 +1,6 @@
 import { CharacterResponse } from '@/core/interfaces/responses/character-response.interface';
 import { LocalStorageAdapter } from '@/helpers/adapters/local-storage.adapter';
+import { sendNotification } from '@/hooks/use-notification';
 import { create } from 'zustand';
 
 interface FavoriteStore {
@@ -20,6 +21,10 @@ export const useFavoriteStore = create<FavoriteStore>()((set, get) => ({
     const newFavorites = [...get().favorites, character];
     set({ favorites: newFavorites });
     LocalStorageAdapter.setItem('guest', newFavorites);
+    sendNotification({
+      title: 'Nuevo favorito',
+      body: `${character.name} se agregó a tu colección Z`,
+    });
   },
   removeFavorite: (id) => {
     const newFavorites = get().favorites.filter(
@@ -35,6 +40,12 @@ export const useFavoriteStore = create<FavoriteStore>()((set, get) => ({
       : [...get().favorites, character];
     set({ favorites: newFavorites });
     LocalStorageAdapter.setItem('guest', newFavorites);
+    if (!exists) {
+      sendNotification({
+        title: 'Nuevo favorito',
+        body: `${character.name} se agregó a tu colección Z`,
+      });
+    }
   },
 
   loadFavorites: async () => {
