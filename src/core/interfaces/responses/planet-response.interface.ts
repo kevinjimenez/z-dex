@@ -7,5 +7,5 @@ export interface PlanetResponse {
   description: string;
   image: string;
   deletedAt: null;
-  characters: Omit<CharacterResponse, 'originPlanet' | 'transformations'>[];
+  characters?: Omit<CharacterResponse, 'originPlanet' | 'transformations'>[];
 }

@@ -1,32 +1,18 @@
+import PlanetDetailCharacter from '@/features/planets/components/PlanetDetailCharacter';
+import PlanetDetailInfo from '@/features/planets/components/PlanetDetailInfo';
+import PlanetDetailPoster from '@/features/planets/components/PlanetDetailPoster';
 import { usePlanetById } from '@/features/planets/hooks/usePlanets';
-import BaseBadge from '@/shared/components/ui/BaseBadge';
-import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
+import LoadingState from '@/shared/components/common/LoadingState';
 import BaseDivider from '@/shared/components/ui/BaseDivider';
-import BasePingDot from '@/shared/components/ui/BasePingDot';
-import BaseThumbnail from '@/shared/components/ui/BaseThumbnail';
 import Lucide from '@react-native-vector-icons/lucide';
-import { Image } from 'expo-image';
-import { useLocalSearchParams, useNavigation } from 'expo-router';
-import { StackActions } from 'expo-router/build/react-navigation';
-import {
-  FlatList,
-  ScrollView,
-  Text,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
+import { FlatList, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const PlanetDetailScreen = () => {
   const { top, bottom } = useSafeAreaInsets();
-  const { height } = useWindowDimensions();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const navigation = useNavigation();
   const { dragonBallPlanet, isLoading } = usePlanetById(+id);
-
-  const goToBack = () => {
-    navigation.dispatch(StackActions.pop());
-  };
 
   return (
     <ScrollView
@@ -39,55 +25,12 @@ const PlanetDetailScreen = () => {
       }}
     >
       {isLoading || !dragonBallPlanet ? (
-        <View>
-          <Text>Carganding...</Text>
-        </View>
+        <LoadingState text="Cargando..." />
       ) : (
         <>
-          <View className="relative">
-            <View
-              style={{ height: height * 0.22 }}
-              className="overflow-hidden rounded-3xl mt-[4.5rem]"
-            >
-              <Image
-                source={{
-                  uri: dragonBallPlanet.image,
-                }}
-                style={{ width: '100%', height: '100%' }}
-                transition={1000}
-              />
-            </View>
-            <BaseButtonIcon
-              onPress={goToBack}
-              icon="arrow-left"
-              size={22}
-              className="absolute p-2.5 bg-surface-terceary border border-surface-terceary rounded-full"
-            />
-          </View>
+          <PlanetDetailPoster image={dragonBallPlanet.image} />
 
-          <View className="flex-col my-10 gap-y-2">
-            <View className="flex-row justify-between">
-              <Text className="text-3xl  font-oswald-medium">
-                {dragonBallPlanet.name}
-              </Text>
-              <View className="flex-row items-center gap-x-2">
-                <BasePingDot
-                  color={
-                    dragonBallPlanet.isDestroyed ? 'bg-error' : 'bg-success'
-                  }
-                />
-                <Text className="uppercase text-xs font-dmsans-medium text-ink-secondary">
-                  {dragonBallPlanet.isDestroyed ? 'Destruido' : 'Activo'}
-                </Text>
-              </View>
-            </View>
-
-            <BaseDivider customClass="w-10 bg-ink-primary" />
-
-            <Text className="text-ink-terceary font-dmsans-regular text-base">
-              {dragonBallPlanet.description}
-            </Text>
-          </View>
+          <PlanetDetailInfo planet={dragonBallPlanet} />
 
           <Text
             className="uppercase text-ink-terceary font-oswald-semibold text-lg mb-5"
@@ -118,42 +61,7 @@ const PlanetDetailScreen = () => {
               </View>
             )}
             renderItem={({ item }) => (
-              <View className="flex-col">
-                <View className="flex-row justify-between items-center">
-                  <View className="flex-row gap-x-4">
-                    <BaseThumbnail
-                      image={item.image}
-                      customClassContainer="rounded-full overflow-hidden"
-                      width={70}
-                      height={70}
-                      contentFit="cover"
-                      contentPosition="top"
-                    />
-                    <View className="justify-center gap-y-2">
-                      <View className="flex-col">
-                        <Text className="font-oswald-semibold text-lg text-ink-primary">
-                          {item.name}
-                        </Text>
-                        <Text className="font-dmsans-medium text-xs text-ink-terceary">
-                          {item.race}
-                        </Text>
-                      </View>
-                      <View className="flex-row gap-x-2 flex-wrap">
-                        <BaseBadge text={item.gender} />
-                        <BaseBadge text={item.affiliation} />
-                      </View>
-                    </View>
-                  </View>
-                  <View className="flex-col items-end justify-center">
-                    <Text className="font-dmsans-semibold text-base text-ink-primary">
-                      {item.ki}
-                    </Text>
-                    <Text className="font-dmsans-medium text-xs text-ink-secondary">
-                      de {item.maxKi}
-                    </Text>
-                  </View>
-                </View>
-              </View>
+              <PlanetDetailCharacter character={item} />
             )}
           />
         </>
