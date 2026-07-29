@@ -11,7 +11,7 @@ const FavoriteDetailModal = ({
   selected,
   onClose,
 }: FavoriteDetailModalProps) => {
-  const { top, bottom } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
 
   return (
     <BaseModal size="full" visible={!!selected}>
