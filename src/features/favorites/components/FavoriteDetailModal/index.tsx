@@ -11,7 +11,7 @@ const FavoriteDetailModal = ({
   selected,
   onClose,
 }: FavoriteDetailModalProps) => {
-  const { top } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
 
   return (
     <BaseModal size="full" visible={!!selected}>
@@ -21,10 +21,8 @@ const FavoriteDetailModal = ({
           className="flex-1 w-full bg-surface-secondary"
           contentContainerStyle={{
             paddingTop: top,
+            // paddingBottom: bottom,
           }}
-          // style={{
-          //   paddingTop: top,
-          // }}
         >
           <View className="relative">
             {/*Container*/}
@@ -45,7 +43,9 @@ const FavoriteDetailModal = ({
                 <BaseRow label="Planeta" value={selected.originPlanet?.name} />
               </View>
 
-              <View className="bg-ink-terceary p-7 rounded-t-3xl">
+              {/*<View className="flex-1" />*/}
+
+              <View className="bg-ink-terceary p-7 rounded-t-3xl w-full h-fit">
                 <Text className="uppercase font-oswald-semibold text-ink-primary-50 text-2xl pb-5">
                   Biografía
                 </Text>

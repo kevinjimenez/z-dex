@@ -47,7 +47,7 @@ const RootLayout = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <Slot />
-        <StatusBar style='inverted' animated />
+        <StatusBar style="inverted" animated />
       </QueryClientProvider>
     </GestureHandlerRootView>
   );
