@@ -7,6 +7,7 @@ import { Slot, SplashScreen } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { cssInterop } from 'nativewind';
 import { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '../global.css';
 // permite usar className (NativeWind) en Lucide, mapeándolo a su prop style
@@ -29,7 +30,10 @@ const RootLayout = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
         <Slot />
-        <StatusBar style="inverted" animated />
+        <StatusBar
+          style={Platform.OS === 'android' ? 'inverted' : 'auto'}
+          animated
+        />
       </QueryClientProvider>
     </GestureHandlerRootView>
   );
