@@ -1,7 +1,10 @@
+import { env } from '@/config/env';
+import { useAuthStore } from '@/features/auth/store/useAuth';
 import { useFavoriteStore } from '@/features/favorites/store/useFavorite';
 import { useAppFonts } from '@/hooks/useAppFonts';
 import Ionicons from '@react-native-vector-icons/ionicons';
 import Lucide from '@react-native-vector-icons/lucide';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Slot, SplashScreen } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -17,11 +20,18 @@ cssInterop(Lucide, { className: 'style' });
 const queryClient = new QueryClient();
 SplashScreen.preventAutoHideAsync();
 
+GoogleSignin.configure({
+  webClientId: env.googleWebClientId,
+  iosClientId: env.googleIosClientId,
+  offlineAccess: false,
+});
+
 const RootLayout = () => {
   const fontsLoaded = useAppFonts();
 
   useEffect(() => {
     useFavoriteStore.getState().loadFavorites();
+    useAuthStore.getState().restoreSession();
   }, []);
 
   if (!fontsLoaded) return null;
