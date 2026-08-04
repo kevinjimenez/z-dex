@@ -1,9 +1,15 @@
+import {
+  LoginFormValues,
+  validateLogin,
+} from '@/features/auth/schemas/login.schema';
 import { useAuthStore } from '@/features/auth/store/useAuth';
 import GoogleSignInButtonCustom from '@/shared/components/common/GoogleSignInButtonCustom';
 import BaseButton from '@/shared/components/ui/BaseButton';
 import BaseDivider from '@/shared/components/ui/BaseDivider';
 import BaseInput from '@/shared/components/ui/BaseInput';
 import { Redirect } from 'expo-router';
+import { Formik } from 'formik';
+import { useState } from 'react';
 import {
   KeyboardAvoidingView,
   Pressable,
@@ -16,6 +22,12 @@ import {
 const LoginScreen = () => {
   const { height } = useWindowDimensions();
   const { user, signIn } = useAuthStore();
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit = async ({ username }: LoginFormValues) => {
+    await signIn(username);
+  };
 
   if (user) return <Redirect href="/character" />;
 
@@ -43,23 +55,60 @@ const LoginScreen = () => {
 
         <View className="flex-1" />
 
-        <View className="flex-col gap-y-4 mt-2">
-          <BaseInput
-            prefixIcon="user"
-            placeholder="username"
-            placeholderTextColor="#a6aeb6"
-            size={18}
-          />
+        <Formik
+          initialValues={{ username: '', password: '' }}
+          validate={validateLogin}
+          onSubmit={onSubmit}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+          }) => (
+            <View className="flex-col gap-y-4 mt-2">
+              <>
+                <BaseInput
+                  prefixIcon="user"
+                  placeholder="username"
+                  placeholderTextColor="#a6aeb6"
+                  size={18}
+                  value={values.username}
+                  onChangeText={handleChange('username')}
+                  onBlur={handleBlur('username')}
+                />
+                {touched.username && errors.username && (
+                  <Text className="text-red-500 text-xs mt-1">
+                    {errors.username}
+                  </Text>
+                )}
+              </>
 
-          <BaseInput
-            prefixIcon="lock"
-            placeholder="password"
-            placeholderTextColor="#a6aeb6"
-            size={18}
-          />
-
-          <BaseButton text="ENTRAR" />
-        </View>
+              <>
+                <BaseInput
+                  prefixIcon="lock"
+                  placeholder="password"
+                  placeholderTextColor="#a6aeb6"
+                  size={18}
+                  value={values.password}
+                  secureTextEntry={!showPassword}
+                  suffixIcon={showPassword ? 'eye-off' : 'eye'}
+                  // onSuffixIconPress={() => setShowPassword((prev) => !prev)}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                />
+                {touched.password && errors.password && (
+                  <Text className="text-red-500 text-xs mt-1">
+                    {errors.password}
+                  </Text>
+                )}
+              </>
+              <BaseButton text="ENTRAR" onPress={() => handleSubmit()} />
+            </View>
+          )}
+        </Formik>
 
         <View className="flex flex-row justify-center items-center my-5 gap-x-2 self-center">
           <BaseDivider customClass="bg-muted-primary-200 w-40" />
