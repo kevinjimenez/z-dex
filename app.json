@@ -38,7 +38,13 @@
       "expo-image",
       "@react-native-vector-icons/lucide",
       "expo-notifications",
-      "expo-status-bar"
+      "expo-status-bar",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.728434909827-v414gejlh5k9167m1ne41latjp6ck7o0"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
