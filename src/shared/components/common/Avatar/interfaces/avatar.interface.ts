@@ -1,5 +1,6 @@
 export interface AvatarProps {
-  text: string;
+  image?: string | null;
+  text?: string;
   customClassContainer?: string;
   customClassText?: string;
 }

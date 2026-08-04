@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 import { BaseThumbnailProps } from './base-thumbnail.interface';
 

@@ -1,25 +1,29 @@
+import { useAuthStore } from '@/features/auth/store/useAuth';
 import BaseButtonIcon from '@/shared/components/ui/BaseButtonIcon';
 import { Text, View } from 'react-native';
 import Avartar from '../Avatar';
 import { DrawerHeaderProps } from './interfaces/drawer-header.interface';
 
 const DrawerHeader = ({ onPress }: DrawerHeaderProps) => {
+  const { user, getAvatar, getUsername } = useAuthStore();
+
   return (
     <View className="flex-row items-center gap-x-5">
       <Avartar
         customClassContainer="size-16"
         customClassText="text-3xl"
-        text="G"
+        text={getAvatar()}
+        image={user?.photo}
       />
       <View className="flex-col flex-1 gap-y-1">
         <Text className="font-oswald-bold text-2xl text-ink-primary">
-          Guerrero Z
+          {user?.name}
         </Text>
         <Text
           className="text-sm text-ink-secondary font-dmsans-medium"
           numberOfLines={1}
         >
-          guerrero@gmail.com
+          {user?.email || getUsername()}
         </Text>
       </View>
       <BaseButtonIcon

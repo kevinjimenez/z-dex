@@ -1,8 +1,11 @@
+import { useAuthStore } from '@/features/auth/store/useAuth';
 import Avartar from '@/shared/components/common/Avatar';
 import DrawerMenuButton from '@/shared/components/common/CustomDrawerMenuButton';
 import { Text, View } from 'react-native';
 
 const CharacterHeader = () => {
+  const { user, getAvatar } = useAuthStore();
+
   return (
     <View className="flex-row mb-2 items-center gap-x-4">
       <DrawerMenuButton />
@@ -16,7 +19,7 @@ const CharacterHeader = () => {
         </Text>
       </View>
 
-      <Avartar text="G" />
+      <Avartar text={getAvatar()} image={user?.photo} />
     </View>
   );
 };
