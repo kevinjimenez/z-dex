@@ -123,13 +123,22 @@ incluso para los flujos de iOS/Android, porque es el que genera el
   verificación de Firebase de abajo).
 - Checkbox **"Verificación de aplicaciones de Firebase"**: dejar **sin
   marcar** — no usamos Firebase en este proyecto, no es obligatorio.
-- Crear y copiar el **Client ID** (formato `XXXXX-yyyy.apps.googleusercontent.com`)
-  → la parte antes de `.apps.googleusercontent.com` es lo que va en
-  `iosUrlScheme` (sección 3):
+- Crear y copiar el **Client ID** (formato `XXXXX-yyyy.apps.googleusercontent.com`).
+  Se usa en **dos lugares distintos** — ojo, es fácil olvidarse del segundo:
 
-  ```json
-  "iosUrlScheme": "com.googleusercontent.apps.<esa-parte>"
-  ```
+  1. La parte antes de `.apps.googleusercontent.com` va en `iosUrlScheme`
+     del plugin (sección 3):
+
+     ```json
+     "iosUrlScheme": "com.googleusercontent.apps.<esa-parte>"
+     ```
+
+  2. El Client ID **completo** (con `.apps.googleusercontent.com`) va además
+     como `iosClientId` en `GoogleSignin.configure()` (sección 7) y en
+     `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID` (sección 5). Como este proyecto no
+     usa Firebase (no hay `GoogleService-Info.plist`), la librería no puede
+     inferir el Client ID de iOS solo, y sin este dato falla en runtime con:
+     `RNGoogleSignin: failed to determine clientID`.
 
 ---
 
@@ -184,7 +193,13 @@ npx expo run:android
 ```
 EXPO_PUBLIC_DRAGON_BALL_API_URL='https://dragonball-api.com/api'
 EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID=''
+EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID=''
 ```
+
+`EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID` es el Client ID **completo** de iOS (el
+mismo del que sacaste la parte para `iosUrlScheme` en 1.2, pero acá con
+`.apps.googleusercontent.com` incluido) — es obligatorio porque el proyecto
+no usa `GoogleService-Info.plist`.
 
 **`src/config/env.ts`:**
 
@@ -194,11 +209,14 @@ import { z } from 'zod';
 const envSchema = z.object({
   EXPO_PUBLIC_DRAGON_BALL_API_URL: z.string().url(),
   EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID: z.string().min(1),
+  EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID: z.string().min(1),
 });
 
 const parsed = envSchema.safeParse({
   EXPO_PUBLIC_DRAGON_BALL_API_URL: process.env.EXPO_PUBLIC_DRAGON_BALL_API_URL,
   EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
+  EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID:
+    process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
 });
 if (!parsed.success) {
   throw new Error(`Invalid environment variables: \n${parsed.error.message}`);
@@ -207,6 +225,7 @@ if (!parsed.success) {
 export const env = {
   dragonBallApiUrl: parsed.data.EXPO_PUBLIC_DRAGON_BALL_API_URL,
   googleWebClientId: parsed.data.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
+  googleIosClientId: parsed.data.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
 };
 ```
 
@@ -329,6 +348,7 @@ import { useAuthStore } from '@/features/auth/store/useAuth';
 
 GoogleSignin.configure({
   webClientId: env.googleWebClientId,
+  iosClientId: env.googleIosClientId,
   offlineAccess: false,
 });
 
@@ -338,6 +358,11 @@ useEffect(() => {
   useAuthStore.getState().restoreSession();
 }, []);
 ```
+
+> **`iosClientId` es obligatorio acá** (no solo el `webClientId`) porque el
+> proyecto no tiene `GoogleService-Info.plist`. Sin este campo, iOS falla en
+> runtime con `RNGoogleSignin: failed to determine clientID` apenas se monta
+> la app — no es un error del flujo de login, es de la config inicial.
 
 ---
 
@@ -388,8 +413,8 @@ tocarlo.
 - [ ] `@react-native-google-signin/google-signin` instalado
 - [ ] Plugin agregado en `app.json` con `iosUrlScheme`
 - [ ] `npx expo prebuild --clean` + rebuild iOS/Android
-- [ ] `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` en `.env` y `.env.example`
-- [ ] `env.ts` actualizado
+- [ ] `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID` y `EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID` en `.env` y `.env.example`
+- [ ] `env.ts` actualizado (incluye `googleIosClientId`)
 - [ ] `features/auth` (interface, store, botón) creado
 - [ ] `GoogleSignin.configure()` + `restoreSession()` en `_layout.tsx`
 - [ ] `profile/index.tsx` conectado
@@ -520,6 +545,9 @@ import { GoogleOneTapSignIn } from 'react-native-nitro-google-signin';
 import { useAuthStore } from '@/features/auth/store/useAuth';
 
 GoogleOneTapSignIn.configure({ webClientId: env.googleWebClientId });
+// probable que también necesite iosClientId: env.googleIosClientId sin
+// GoogleService-Info.plist — mismo problema que en la Opción A (ver sección
+// 7), verificar contra la API reference de esta librería al implementar.
 
 useEffect(() => {
   useFavoriteStore.getState().loadFavorites();
