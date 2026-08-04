@@ -9,14 +9,34 @@ import { User } from '../interfaces/user.interface';
 interface AuthStore {
   user: User | null;
   isLoading: boolean;
+
+  signIn: (username: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
   restoreSession: () => Promise<void>;
+  getUsername: () => string;
+  getAvatar: () => string;
 }
 
-export const useAuthStore = create<AuthStore>()((set) => ({
+export const useAuthStore = create<AuthStore>()((set, get) => ({
   user: null,
   isLoading: false,
+
+  signIn: async (username: string) => {
+    set({ isLoading: true });
+    try {
+      const user: User = {
+        id: '',
+        name: username,
+        email: '',
+        photo: null,
+      };
+      set({ user });
+      await LocalStorageAdapter.setItem('auth-user', user);
+    } finally {
+      set({ isLoading: false });
+    }
+  },
 
   signInWithGoogle: async () => {
     set({ isLoading: true });
@@ -39,7 +59,10 @@ export const useAuthStore = create<AuthStore>()((set) => ({
   },
 
   signOut: async () => {
-    await GoogleSignin.signOut();
+    const userId = get().user?.id;
+    if (userId !== '') {
+      await GoogleSignin.signOut();
+    }
     set({ user: null });
     await LocalStorageAdapter.deleteItem('auth-user');
   },
@@ -48,4 +71,9 @@ export const useAuthStore = create<AuthStore>()((set) => ({
     const stored = await LocalStorageAdapter.getItem<User>('auth-user');
     if (stored && typeof stored === 'object') set({ user: stored });
   },
+
+  getAvatar: () => get().user?.name.at(0) ?? '',
+
+  getUsername: () =>
+    `@${get().user?.name.toLocaleLowerCase().split(' ').join('')}`,
 }));
