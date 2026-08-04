@@ -125,6 +125,29 @@ CharacterPoster/
 - **Sí conviene la carpeta**: cuando el/los átomo(s) son exclusivamente privados de ese componente y no se van a reusar en ningún otro lado.
 - **No conviene**: para piezas que ya se comparten entre varios padres (ej. `CharacterAvatar`, que usan tanto `CharacterCard` como `CharacterPoster`; o `StatCard`/`ListSkeleton`, genéricos en `shared/`). Meterlas dentro de la carpeta de un componente específico sugiere falsamente que son privadas de ese componente.
 
+### Login con Google (SHA-1 en Android)
+
+El punto que suele trabar a cada dev nuevo: **Android valida el login contra el certificado con el que se firmó el build (SHA-1)**, y ese `debug.keystore` es local a cada máquina (`android/` está en `.gitignore`, no se comparte vía git). Por eso, si querés que el login con Google funcione en tus builds de debug, tenés que generar y registrar **tu propio SHA-1**:
+
+```bash
+keytool -list -v -keystore android/app/debug.keystore \
+  -alias androiddebugkey -storepass android -keypass android
+```
+
+Copiá el valor de `SHA1:` y agregalo como huella al OAuth Client ID de tipo **Android** en Google Cloud Console (se pueden registrar varios SHA-1, uno por dev). Sin este paso, el login falla con `DEVELOPER_ERROR` aunque el código esté bien.
+
+Para **producción** es un keystore aparte (el de release, no el de debug), con su propio SHA-1:
+
+```bash
+keytool -list -v -keystore my-release-key.keystore -alias zdex-release
+```
+
+(pide la contraseña del keystore de release, a diferencia del de debug que usa `android`/`android` fijos). Y si usás Play App Signing, el SHA-1 real que hay que registrar es el que aparece en Play Console → Integridad de la app → Certificado de la clave de firma de la app, no el de tu keystore local.
+
+📄 Guía completa paso a paso (Google Cloud Console, `app.json`, feature `auth`, UI): [`GOOGLE_LOGIN.md`](./GOOGLE_LOGIN.md).
+
+En **iOS** no aplica nada de esto: Google solo valida el Bundle ID, no hay certificado de firma de por medio.
+
 ### Other setup steps
 
 - To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
