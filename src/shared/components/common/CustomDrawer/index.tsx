@@ -1,4 +1,6 @@
+import { useAuthStore } from '@/features/auth/store/useAuth';
 import BaseButton from '@/shared/components/ui/BaseButton';
+import { router } from 'expo-router';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
@@ -10,6 +12,12 @@ import DrawerTabItem from './DrawerTabItem';
 
 const CustomDrawer = (props: DrawerContentComponentProps) => {
   const { navigation } = props;
+  const signOut = useAuthStore((state) => state.signOut);
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.replace('/auth/login');
+  };
 
   const closeDrawer = () => {
     navigation.closeDrawer();
@@ -89,7 +97,12 @@ const CustomDrawer = (props: DrawerContentComponentProps) => {
         </View>
       </View>
 
-      <BaseButton text="Cerrar sesión" prefixIcon="log-out" variant="soft" />
+      <BaseButton
+        text="Cerrar sesión"
+        prefixIcon="log-out"
+        variant="soft"
+        onPress={handleSignOut}
+      />
     </DrawerContentScrollView>
   );
 };
