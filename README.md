@@ -125,6 +125,47 @@ CharacterPoster/
 - **Sí conviene la carpeta**: cuando el/los átomo(s) son exclusivamente privados de ese componente y no se van a reusar en ningún otro lado.
 - **No conviene**: para piezas que ya se comparten entre varios padres (ej. `CharacterAvatar`, que usan tanto `CharacterCard` como `CharacterPoster`; o `StatCard`/`ListSkeleton`, genéricos en `shared/`). Meterlas dentro de la carpeta de un componente específico sugiere falsamente que son privadas de ese componente.
 
+### Formularios (Formik + Zod)
+
+Los formularios de este proyecto combinan **Formik** (estado del form: `values`, `touched`, `errors`, `handleChange`, `handleSubmit`) con **Zod** (definir el schema de validación y sacar el tipo TS del form) — no se valida a mano dentro de Formik.
+
+El puente entre los dos es `createFormValidator` (`src/utils/create-form-validator.ts`): toma un schema de Zod y devuelve una función compatible con la prop `validate` de Formik, convirtiendo el formato de errores de Zod (`error.flatten().fieldErrors`) al formato plano que espera Formik (`{ campo: mensaje }`).
+
+Ejemplo real, `src/features/auth/schemas/login.schema.ts`:
+
+```ts
+import { createFormValidator } from '@/utils/create-form-validator';
+import z from 'zod';
+
+export const loginSchema = z.object({
+  username: z.string().min(1, 'El username es requerido'),
+  password: z.string().min(1, 'El password es requerido'),
+});
+
+export type LoginFormValues = z.infer<typeof loginSchema>;
+
+export const validateLogin = createFormValidator(loginSchema);
+```
+
+Y el uso en la pantalla (`src/app/auth/login/index.tsx`):
+
+```tsx
+<Formik
+  initialValues={{ username: '', password: '' }}
+  validate={validateLogin}
+  onSubmit={onSubmit}
+>
+  {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+    // inputs con value={values.x} onChangeText={handleChange('x')} onBlur={handleBlur('x')}
+    // <BaseButton onPress={() => handleSubmit()} />
+  )}
+</Formik>
+```
+
+**Ojo con el botón de submit**: hay que pasarle `() => handleSubmit()` (el `handleSubmit` que da Formik), no tu propio `onSubmit` directo — `onSubmit` espera los valores del form (`{ username, password }`), mientras que el `onPress` de un botón espera un evento de touch; son firmas incompatibles y Formik es quien conecta ambos (valida y recién después llama a tu `onSubmit` con los valores).
+
+Para un formulario nuevo: creá su schema con Zod en `features/<feature>/schemas/`, envolvelo con `createFormValidator`, y listo — no hace falta reinventar la validación por formulario.
+
 ### Login con Google (SHA-1 en Android)
 
 El punto que suele trabar a cada dev nuevo: **Android valida el login contra el certificado con el que se firmó el build (SHA-1)**, y ese `debug.keystore` es local a cada máquina (`android/` está en `.gitignore`, no se comparte vía git). Por eso, si querés que el login con Google funcione en tus builds de debug, tenés que generar y registrar **tu propio SHA-1**:
