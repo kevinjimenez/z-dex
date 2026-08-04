@@ -311,21 +311,21 @@ export const useAuthStore = create<AuthStore>()((set) => ({
 
 ### `components/GoogleSignInButton/index.tsx`
 
-Reutiliza `BaseButton` (`src/shared/components/ui/BaseButton`):
+La librería trae el botón **oficial de Google** como componente nativo
+(`GoogleSigninButton`) — con el logo y estilo correctos, cumpliendo las
+branding guidelines de Google. Se usa en vez de un `BaseButton` genérico:
 
 ```tsx
 import { useAuthStore } from '@/features/auth/store/useAuth';
-import BaseButton from '@/shared/components/ui/BaseButton';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 const GoogleSignInButton = () => {
   const { signInWithGoogle, isLoading } = useAuthStore();
 
   return (
-    <BaseButton
-      text="Continuar con Google"
-      prefixIcon="log-in"
-      variant="contained"
-      color="primary"
+    <GoogleSigninButton
+      size={GoogleSigninButton.Size.Wide}
+      color={GoogleSigninButton.Color.Dark}
       onPress={signInWithGoogle}
       disabled={isLoading}
     />
@@ -334,6 +334,10 @@ const GoogleSignInButton = () => {
 
 export default GoogleSignInButton;
 ```
+
+`Size` acepta `Icon` / `Standard` / `Wide` (fijan un `width`/`height` fijos,
+no responden a `className`/Tailwind por ser vista nativa). `Color` acepta
+`Dark` / `Light`.
 
 ---
 
