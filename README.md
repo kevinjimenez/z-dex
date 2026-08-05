@@ -189,6 +189,60 @@ keytool -list -v -keystore my-release-key.keystore -alias zdex-release
 
 En **iOS** no aplica nada de esto: Google solo valida el Bundle ID, no hay certificado de firma de por medio.
 
+### Navegación raíz (`Stack`, no `Slot`)
+
+`src/app/_layout.tsx` envuelve las rutas con `<Stack screenOptions={{ headerShown: false, animation: 'fade' }} />`, no con `<Slot />`. La diferencia importa:
+
+- **`Slot`** es un passthrough puro — renderiza lo que matchee sin navigator de por medio: cero animaciones, cero historial, cero gestos de swipe-back.
+- **`Stack`** agrega un navigator de verdad (historial, transición animada, swipe-back en iOS). Es el default que trae el template de Expo Router, no `Slot` — `Slot` se reserva para casos donde genuinamente no querés nada de eso (ej. un layout que solo envuelve providers).
+
+Como `(drawer)` ya tiene su propio `Drawer` navigator anidado adentro, apilar un `Stack` en la raíz es el patrón estándar de Expo Router (`Stack > Drawer > Tabs`). Antes de este cambio, pasar de `/auth/login` a `(drawer)` (o el logout de vuelta) se sentía como un corte seco — con `Stack` + `animation: 'fade'` ahora anima.
+
+Valores de `animation` disponibles además de `'fade'`: `'slide_from_right'` (como un push de stack normal), `'slide_from_bottom'` (estilo modal), `'fade_from_bottom'` (mezcla de las dos). Se puede diferenciar por pantalla si querés, por ejemplo, que el logout anime distinto al login.
+
+**Ojo con `Stack`**: habilita swipe-back en iOS entre pantallas de nivel raíz. No afecta mientras login/logout usen `router.replace` (no dejan la pantalla anterior en el historial) — si en algún punto se cambia a `router.push` entre `/auth/login` y el resto de la app, sí podría dejar un swipe-back accediendo a una pantalla que no debería ser alcanzable.
+
+### Bug de NativeWind: `focus:` pisa el `style` en Android (`BaseInput`)
+
+Si un `TextInput` (u otro componente) combina variantes `focus:`/`hover:`/`active:` de NativeWind en el `className` **con** un `style` explícito (o clases estáticas condicionadas por props, como `pl-11` cuando hay un ícono), en Android el resultado puede fallar solo **mientras el campo tiene foco** — el padding/color/border que dependían de `style` desaparecen apenas se toca el campo, y vuelven a verse bien al perder el foco.
+
+**Causa**: NativeWind (v4) implementa `focus:*` escuchando el evento de foco y recalculando el `style` final del componente en runtime. Ese recálculo interno termina pisando cualquier `style` pasado explícitamente desde afuera, no solo las clases estáticas — probamos moviendo el padding de `className` (`pl-11`) a `style` directo, y igual se rompía al enfocar, lo que confirmó que el problema no era "NativeWind no genera la clase" sino que **NativeWind gana la pulseada contra el `style` una vez que hay foco**.
+
+**Fix aplicado en `BaseInput`** (`src/shared/components/ui/BaseInput/index.tsx`): sacar las variantes `focus:*` del `className` por completo, y manejar el estado de foco a mano con `useState` + `onFocus`/`onBlur` propios (encadenando los que vengan por props, ej. el `onBlur` de Formik). Border, fondo, color de texto y padding se calculan en JS según ese estado y se aplican siempre vía `style` — sin `focus:` en el `className`, NativeWind no tiene motivo para interceptar el ciclo de foco de ese input.
+
+```tsx
+const [isFocused, setIsFocused] = useState(false);
+
+const handleFocus = (e: FocusEvent) => {
+  setIsFocused(true);
+  onFocus?.(e);
+};
+const handleBlur = (e: BlurEvent) => {
+  setIsFocused(false);
+  onBlur?.(e);
+};
+
+// ...
+<TextInput
+  className={twMerge('border rounded-xl p-4', classInput)} // sin focus:*
+  onFocus={handleFocus}
+  onBlur={handleBlur}
+  style={[
+    {
+      paddingLeft: prefixIcon ? 44 : undefined,
+      paddingRight: suffixIcon ? 44 : undefined,
+      borderColor: isFocused ? '#b0ada6' : '#e4e2de',
+      backgroundColor: isFocused ? '#ffffff' : 'transparent',
+      color: isFocused ? '#242320' : undefined,
+    },
+    style,
+  ]}
+  {...props}
+/>
+```
+
+**Si aparece algo parecido en otro `Base*` component**: mismo síntoma (algo que depende de `style`/props deja de aplicarse solo al interactuar) → sospechar primero de mezclar `focus:`/`hover:`/`active:` de NativeWind con `style` explícito, no de z-index/orden de renderizado/elevation (todo eso lo probamos primero y no era la causa real).
+
 ### Other setup steps
 
 - To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
