@@ -6,7 +6,7 @@ import Ionicons from '@react-native-vector-icons/ionicons';
 import Lucide from '@react-native-vector-icons/lucide';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Slot, SplashScreen } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { cssInterop } from 'nativewind';
 import { useEffect } from 'react';
@@ -39,7 +39,7 @@ const RootLayout = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
-        <Slot />
+        <Stack screenOptions={{ headerShown: false, animation: 'fade' }} />
         <StatusBar
           style={Platform.OS === 'android' ? 'inverted' : 'auto'}
           animated
