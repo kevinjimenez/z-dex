@@ -1,5 +1,12 @@
 import Lucide, { LucideIconName } from '@react-native-vector-icons/lucide';
-import { TextInput, TextInputProps, View } from 'react-native';
+import { useState } from 'react';
+import {
+  BlurEvent,
+  FocusEvent,
+  TextInput,
+  TextInputProps,
+  View,
+} from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
 interface Props extends TextInputProps {
@@ -17,33 +24,55 @@ const BaseInput = ({
   color,
   size,
   placeholder,
+  style,
+  onFocus,
+  onBlur,
   ...props
 }: Props) => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = (e: FocusEvent) => {
+    setIsFocused(true);
+    onFocus?.(e);
+  };
+
+  const handleBlur = (e: BlurEvent) => {
+    setIsFocused(false);
+    onBlur?.(e);
+  };
+
   return (
     <View className="justify-center">
       {prefixIcon && (
-        <Lucide
-          className={twMerge('absolute z-10 left-4 text-[#a6aeb6]', color)}
-          name={prefixIcon}
-          size={size}
-        />
+        <View className="absolute left-4 z-10">
+          <Lucide
+            className={twMerge('text-[#a6aeb6]', color)}
+            name={prefixIcon}
+            size={size}
+          />
+        </View>
       )}
       <TextInput
         placeholder={placeholder}
-        className={twMerge(
-          'border border-surface-terceary p-4 rounded-xl focus:border-muted-primary focus:bg-white focus:text-ink-primary',
-          prefixIcon && 'pl-11',
-          suffixIcon && 'pr-11',
-          classInput,
-        )}
+        className={twMerge('border rounded-xl p-4', classInput)}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        style={[
+          {
+            paddingLeft: prefixIcon ? 44 : undefined,
+            paddingRight: suffixIcon ? 44 : undefined,
+            borderColor: isFocused ? '#b0ada6' : '#e4e2de',
+            backgroundColor: isFocused ? '#ffffff' : 'transparent',
+            color: isFocused ? '#242320' : undefined,
+          },
+          style,
+        ]}
         {...props}
       />
       {suffixIcon && (
-        <Lucide
-          className="absolute z-10 right-4 text-[#a6aeb6]"
-          name={suffixIcon}
-          size={size}
-        />
+        <View className="absolute right-4 z-10">
+          <Lucide className="text-[#a6aeb6]" name={suffixIcon} size={size} />
+        </View>
       )}
     </View>
   );
