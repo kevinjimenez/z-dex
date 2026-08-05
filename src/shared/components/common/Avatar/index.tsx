@@ -17,7 +17,7 @@ const Avartar = ({
       )}
     >
       {image ? (
-        <BaseThumbnail image={image} />
+        <BaseThumbnail image={image} height="100%" width="100%" />
       ) : (
         <Text
           className={twMerge(
