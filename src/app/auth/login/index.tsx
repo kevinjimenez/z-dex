@@ -37,6 +37,7 @@ const LoginScreen = () => {
         style={{ paddingHorizontal: 40 }}
         contentContainerStyle={{ flexGrow: 1 }}
         className="bg-surface-primary"
+        keyboardShouldPersistTaps="handled"
       >
         <View
           className="items-center justify-center gap-y-6"
@@ -80,7 +81,7 @@ const LoginScreen = () => {
                   onBlur={handleBlur('username')}
                 />
                 {touched.username && errors.username && (
-                  <Text className="text-red-500 text-xs mt-1">
+                  <Text className="text-ink-terceary text-sm">
                     {errors.username}
                   </Text>
                 )}
@@ -100,7 +101,7 @@ const LoginScreen = () => {
                   onBlur={handleBlur('password')}
                 />
                 {touched.password && errors.password && (
-                  <Text className="text-red-500 text-xs mt-1">
+                  <Text className="text-ink-terceary text-sm">
                     {errors.password}
                   </Text>
                 )}
